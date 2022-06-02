@@ -6,6 +6,7 @@ import {
   Tooltip,
   IconButton,
   Avatar,
+  useDisclosure,
 } from "@chakra-ui/react";
 import {
   AiOutlineHome,
@@ -13,8 +14,10 @@ import {
   AiOutlinePlusCircle,
 } from "react-icons/ai";
 import { BsBookmark } from "react-icons/bs";
+import { CreatePostModal } from "./modals/CreatePostModal";
 
 const Navbar = () => {
+  const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <Box
       bg="white"
@@ -61,6 +64,7 @@ const Navbar = () => {
               borderRadius="full"
               icon={<AiOutlinePlusCircle />}
               ml={4}
+              onClick={onOpen}
             ></IconButton>
           </Tooltip>
           <Link to={"/profile"}>
@@ -74,6 +78,7 @@ const Navbar = () => {
           </Link>
         </div>
       </HStack>
+      <CreatePostModal isOpen={isOpen} onClose={onClose} />
     </Box>
   );
 };

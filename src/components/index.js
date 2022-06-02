@@ -5,3 +5,4 @@ export { FollowerSuggestions } from "./FollowerSuggestions";
 export { FollowerSuggestionsProfile } from "./FollowerSuggestionProfile";
 export { ProfileCard } from "./ProfileCard";
 export { EditProfileModal } from "./modals/EditProfileModal";
+export { CreatePostModal } from "./modals/CreatePostModal";

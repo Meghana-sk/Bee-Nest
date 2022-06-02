@@ -9,7 +9,6 @@ import {
   BookMarks,
 } from "./pages";
 import { Navbar, FollowerSuggestions } from "./components";
-import { Container } from "@chakra-ui/react";
 
 function App() {
   const location = useLocation();
@@ -25,7 +24,9 @@ function App() {
         <Route path="/explore" element={<Explore />} />
         <Route path="/bookmark" element={<BookMarks />} />
       </Routes>
-      {location.pathname !== "/" && <FollowerSuggestions />}
+      {location.pathname !== "/" &&
+        location.pathname !== "/login" &&
+        location.pathname !== "/signup" && <FollowerSuggestions />}
     </div>
   );
 }

@@ -8,7 +8,7 @@ const CommentBox = () => {
         size={"sm"}
       ></Avatar>
       <Input placeholder="Write your comment" mb="8" />
-      <Button backgroundColor={"purple.400"}>Post</Button>
+      <Button colorScheme="purple">Post</Button>
     </HStack>
   );
 };

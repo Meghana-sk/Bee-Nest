@@ -12,12 +12,8 @@ import {
   InputGroup,
   InputLeftElement,
   InputRightElement,
-  chakra,
 } from "@chakra-ui/react";
 import { FaUserAlt, FaLock } from "react-icons/fa";
-
-const CFaUserAlt = chakra(FaUserAlt);
-const CFaLock = chakra(FaLock);
 
 const Login = ({ heading = "Login" }) => {
   const [showPassword, setShowPassword] = useState(false);
@@ -50,14 +46,16 @@ const Login = ({ heading = "Login" }) => {
                 <InputGroup>
                   <InputLeftElement
                     pointerEvents="none"
-                    children={<CFaUserAlt color="gray.300" />}
+                    children={<FaUserAlt />}
+                    color="gray.300"
                   />
                   <Input placeholder="Enter Username" mb="4" type={"email"} />
                 </InputGroup>
                 <InputGroup>
                   <InputLeftElement
                     pointerEvents="none"
-                    children={<CFaLock color="gray.300" />}
+                    children={<FaLock />}
+                    color="gray.300"
                   />
                   <Input
                     placeholder="Enter Password"
@@ -78,7 +76,7 @@ const Login = ({ heading = "Login" }) => {
                   display="block"
                   w="100%"
                   mb="4"
-                  backgroundColor="purple.400"
+                  colorScheme="purple"
                 >
                   Login
                 </Button>

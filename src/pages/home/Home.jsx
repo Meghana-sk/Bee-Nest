@@ -1,4 +1,4 @@
-import { Box } from "@chakra-ui/react";
+import { Box, Tabs, TabList, Tab } from "@chakra-ui/react";
 import { PostCard } from "../../components";
 
 const Home = () => {
@@ -12,6 +12,16 @@ const Home = () => {
       p={4}
       bg={"gray.100"}
     >
+      <Tabs variant="soft-rounded" colorScheme="purple">
+        <TabList>
+          <Tab width={"50%"} p={4} minWidth={"300px"}>
+            Trending
+          </Tab>
+          <Tab width={"50%"} p={4} minWidth={"300px"}>
+            Filters
+          </Tab>
+        </TabList>
+      </Tabs>
       <PostCard />
       <PostCard />
       <PostCard />

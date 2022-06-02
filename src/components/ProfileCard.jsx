@@ -7,7 +7,6 @@ import {
   HStack,
   VStack,
   Button,
-  Textarea,
   useDisclosure,
 } from "@chakra-ui/react";
 import { EditProfileModal } from "./modals/EditProfileModal";
@@ -46,10 +45,10 @@ const ProfileCard = () => {
           </VStack>
         </HStack>
         <HStack>
-          <Button bg={"purple.400"} onClick={onOpen}>
+          <Button colorScheme="purple" onClick={onOpen}>
             Edit profile
           </Button>
-          <Button bg={"red.400"}>Logout</Button>
+          <Button colorScheme="red">Logout</Button>
         </HStack>
       </Flex>
       {<EditProfileModal isOpen={isOpen} onOpen={onOpen} onClose={onClose} />}
