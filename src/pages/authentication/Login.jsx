@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import {
   Flex,
   Box,
@@ -8,7 +9,6 @@ import {
   Input,
   Avatar,
   Heading,
-  Link,
   InputGroup,
   InputLeftElement,
   InputRightElement,
@@ -84,8 +84,8 @@ const Login = ({ heading = "Login" }) => {
             </Stack>
           </Box>
           <Box>
-            New to us?{" "}
-            <Link color="purple.500" href="#">
+            New to us?
+            <Link color="purple.500" to="/signup">
               Sign Up
             </Link>
           </Box>

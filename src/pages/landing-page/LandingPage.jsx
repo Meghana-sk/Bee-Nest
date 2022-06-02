@@ -1,5 +1,4 @@
-import { Flex, Image, Box, VStack } from "@chakra-ui/react";
-import { FollowerSuggestions, PostCard } from "../../components";
+import { Flex, Image, Box } from "@chakra-ui/react";
 import { Login } from "../../pages";
 
 const LandingPage = () => {

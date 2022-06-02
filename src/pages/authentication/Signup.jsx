@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import {
   Flex,
   Box,
@@ -8,7 +9,6 @@ import {
   Input,
   Avatar,
   Heading,
-  Link,
   InputGroup,
   InputLeftElement,
   InputRightElement,
@@ -98,7 +98,7 @@ const Signup = () => {
           </Box>
           <Box>
             Already have an account?
-            <Link color="purple.500" href="#" ml={1}>
+            <Link color="purple.500" to="/login" ml={1}>
               Login
             </Link>
           </Box>
