@@ -48,7 +48,7 @@ const Navbar = () => {
             </Tooltip>
           </Link>
           <Link to={"/bookmark"}>
-            <Tooltip label="Explore">
+            <Tooltip label="Bookmark">
               <IconButton
                 borderRadius="full"
                 icon={<BsBookmark />}
@@ -56,15 +56,13 @@ const Navbar = () => {
               ></IconButton>
             </Tooltip>
           </Link>
-          <Link to="/post">
-            <Tooltip label="Add post">
-              <IconButton
-                borderRadius="full"
-                icon={<AiOutlinePlusCircle />}
-                ml={4}
-              ></IconButton>
-            </Tooltip>
-          </Link>
+          <Tooltip label="Add post">
+            <IconButton
+              borderRadius="full"
+              icon={<AiOutlinePlusCircle />}
+              ml={4}
+            ></IconButton>
+          </Tooltip>
           <Link to={"/profile"}>
             <Tooltip label="Profile">
               <Avatar

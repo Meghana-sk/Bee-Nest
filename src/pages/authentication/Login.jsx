@@ -19,7 +19,7 @@ import { FaUserAlt, FaLock } from "react-icons/fa";
 const CFaUserAlt = chakra(FaUserAlt);
 const CFaLock = chakra(FaLock);
 
-const Login = () => {
+const Login = ({ heading = "Login" }) => {
   const [showPassword, setShowPassword] = useState(false);
 
   const handleShowClick = () => setShowPassword(!showPassword);
@@ -38,7 +38,7 @@ const Login = () => {
           alignItems={"center"}
         >
           <Avatar bg="purple.500" />
-          <Heading color="purple.400">Login</Heading>
+          <Heading color="purple.400">{heading}</Heading>
           <Box
             minW={{ base: "80%", md: "468px" }}
             backgroundColor={"whiteAlpha.900"}
