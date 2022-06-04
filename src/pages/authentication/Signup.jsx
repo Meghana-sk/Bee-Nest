@@ -51,25 +51,29 @@ const Signup = () => {
       userData.firstName &&
       userData.lastName &&
       userData.password &&
-      userData.password === userData.confirmPassword
+      userData.confirmPassword
     );
   };
 
   const signupHandler = async (e) => {
     if (validateInputs()) {
-      const response = await dispatch(signup(userData));
-      if (response?.payload?.status === 201) {
-        localStorage.setItem(
-          "user",
-          JSON.stringify(response.payload.data.createdUser)
-        );
-        localStorage.setItem("token", response.payload.data.encodedToken);
-        toast.success("Successfully signed up");
-        navigate(location?.state?.from?.pathname || "/home", {
-          replace: true,
-        });
+      if (userData.password === userData.confirmPassword) {
+        const response = await dispatch(signup(userData));
+        if (response?.payload?.status === 201) {
+          localStorage.setItem(
+            "user",
+            JSON.stringify(response.payload.data.createdUser)
+          );
+          localStorage.setItem("token", response.payload.data.encodedToken);
+          toast.success("Successfully signed up");
+          navigate(location?.state?.from?.pathname || "/home", {
+            replace: true,
+          });
+        } else {
+          toast.error("Something went wrong... Please Try After Sometime");
+        }
       } else {
-        toast.error("Something went wrong... Please Try After Sometime");
+        toast.error("Password and confirm password do not match");
       }
     } else {
       toast.error("Enter all the details");
