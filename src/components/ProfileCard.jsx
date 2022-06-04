@@ -9,10 +9,23 @@ import {
   Button,
   useDisclosure,
 } from "@chakra-ui/react";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import { EditProfileModal } from "./modals/EditProfileModal";
+import { logout } from "../redux/slices";
 
 const ProfileCard = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const logoutHandler = () => {
+    dispatch(logout());
+    navigate("/");
+    toast.success("Logged Out Successfully!!");
+  };
+
   return (
     <Box p={4}>
       <Flex
@@ -48,7 +61,9 @@ const ProfileCard = () => {
           <Button colorScheme="purple" onClick={onOpen}>
             Edit profile
           </Button>
-          <Button colorScheme="red">Logout</Button>
+          <Button colorScheme="red" onClick={logoutHandler}>
+            Logout
+          </Button>
         </HStack>
       </Flex>
       {<EditProfileModal isOpen={isOpen} onOpen={onOpen} onClose={onClose} />}

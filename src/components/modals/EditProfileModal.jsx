@@ -25,7 +25,7 @@ const EditProfileModal = ({ isOpen, onClose }) => {
         <ModalCloseButton />
         <ModalBody>
           <VStack alignItems={"flex-start"}>
-            <HStack alignItems={"center"} gap="5">
+            <HStack gap="5">
               <Text>Avatar</Text>
               <Box position="relative">
                 <Avatar
@@ -35,14 +35,14 @@ const EditProfileModal = ({ isOpen, onClose }) => {
                 ></Avatar>
               </Box>
             </HStack>
-            <HStack alignItems={"center"} gap={2} w="full">
+            <HStack gap={2} w="full">
               <Text>Website</Text>
               <Input
                 placeholder="https://sk-meghana.netlify.app"
                 borderRadius="md"
               ></Input>
             </HStack>
-            <HStack alignItems={"flex-start"} gap="2.7rem" w="full">
+            <HStack gap="2.7rem" w="full">
               <Text>Bio</Text>
               <Textarea
                 borderRadius={"md"}

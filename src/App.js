@@ -1,4 +1,6 @@
 import { Routes, Route, useLocation } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import {
   Login,
   Signup,
@@ -16,6 +18,12 @@ function App() {
   return (
     <div className="App">
       {location.pathname !== "/" && <Navbar />}
+      <ToastContainer
+        theme="colored"
+        autoClose={3000}
+        position="bottom-right"
+        closeOnClick
+      />
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/login" element={<Login />} />

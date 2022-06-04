@@ -7,7 +7,7 @@ const RequiresAuth = ({ children }) => {
   return token || localStorage.getItem("token") ? (
     children
   ) : (
-    <Navigate to="/" state={{ from: location }} replace={true} />
+    <Navigate to="/login" state={{ from: location }} replace={true} />
   );
 };
 
