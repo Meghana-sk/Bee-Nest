@@ -27,7 +27,7 @@ const Navbar = () => {
       top={0}
       zIndex={7}
     >
-      <HStack alignItems={"center"} justifyContent={"space-between"}>
+      <HStack justifyContent={"space-between"}>
         <Link to="/home">
           <Heading>BEE Nest</Heading>
         </Link>
