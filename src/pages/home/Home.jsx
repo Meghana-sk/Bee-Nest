@@ -1,7 +1,17 @@
 import { Box, Tabs, TabList, Tab } from "@chakra-ui/react";
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { getPosts } from "../../redux/asyncThunk";
 import { PostCard } from "../../components";
 
 const Home = () => {
+  const { posts } = useSelector((state) => state.posts);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getPosts());
+  }, [dispatch]);
+
   return (
     <Box
       display="flex"
@@ -22,9 +32,11 @@ const Home = () => {
           </Tab>
         </TabList>
       </Tabs>
-      <PostCard />
-      <PostCard />
-      <PostCard />
+      {posts.length ? (
+        posts.map((post) => <PostCard key={post._id} />)
+      ) : (
+        <p>There are no posts to display</p>
+      )}
     </Box>
   );
 };

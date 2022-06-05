@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { login, signup } from "../asyncThunk";
+import { login, signup, editUser } from "../asyncThunk";
 
 const initialState = {
   user: JSON.parse(localStorage.getItem("user")) || null,
@@ -17,6 +17,9 @@ const authSlice = createSlice({
       localStorage.removeItem("token");
       localStorage.removeItem("user");
       state.isLoading = false;
+    },
+    updateUser: (state, action) => {
+      state.user = action.payload;
     },
   },
   extraReducers: {
@@ -41,9 +44,20 @@ const authSlice = createSlice({
     [signup.rejected]: (state) => {
       state.isLoading = false;
     },
+    [editUser.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [editUser.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      state.user = action.payload.data.user;
+    },
+    [editUser.rejected]: (state, action) => {
+      state.isLoading = false;
+      console.error(action.error.message);
+    },
   },
 });
 
-export const { logout } = authSlice.actions;
+export const { logout, updateUser } = authSlice.actions;
 
 export const { reducer: authReducer } = authSlice;
