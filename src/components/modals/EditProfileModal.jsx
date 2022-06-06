@@ -15,8 +15,59 @@ import {
   Avatar,
   Input,
 } from "@chakra-ui/react";
+import { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { AiFillCamera } from "react-icons/ai";
+import { toast } from "react-toastify";
+import { editUser } from "../../redux/asyncThunk";
+import { updateUser } from "../../redux/slices";
 
-const EditProfileModal = ({ isOpen, onClose }) => {
+const EditProfileModal = ({ isOpen, onClose, userProfile }) => {
+  const { token } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
+  const reader = new FileReader();
+
+  const [userData, setUserData] = useState({
+    ...userProfile,
+    avatarFile: "",
+  });
+
+  const updateProfileImageHandler = (e) => {
+    reader.readAsDataURL(e.target.files[0]);
+    reader.onload = () => {
+      if (reader.readyState === 2) {
+        setUserData({
+          ...userData,
+          avatarURL: reader.result,
+          avatarFile: e.target.files[0],
+        });
+      } else {
+        reader.abort();
+        setUserData({
+          ...userData,
+          avatarURL: "",
+          avatarFile: "",
+        });
+      }
+    };
+  };
+
+  const updateModifiedData = async (data) => {
+    try {
+      const response = await dispatch(editUser({ userData: data, token }));
+      if (response.payload.status === 201) {
+        setUserData(response.payload.data.user);
+        dispatch(updateUser(response?.payload.data.user));
+        toast.info("Profile Updated Successfully!!");
+      } else {
+        toast.error(`${response?.payload?.data?.errors[0]}`);
+      }
+    } catch (error) {
+      toast.error(error);
+    } finally {
+    }
+  };
+
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <ModalOverlay />
@@ -33,6 +84,28 @@ const EditProfileModal = ({ isOpen, onClose }) => {
                   src="https://res.cloudinary.com/meghanaskcloud/image/upload/v1654017744/Social%20media/aiony-haust-3TLl_97HNJo-unsplash_g1ezar.jpg"
                   size="lg"
                 ></Avatar>
+                <Box
+                  position="absolute"
+                  p="1"
+                  borderRadius={"full"}
+                  top="50%"
+                  right="10%"
+                  bg="blackAlpha.500"
+                >
+                  <Box cursor="pointer">
+                    <Input
+                      type="file"
+                      accept="image/*"
+                      position="absolute"
+                      opacity="0"
+                      bgColor="red.100"
+                      p="0"
+                      cursor={"pointer"}
+                      onChange={updateProfileImageHandler}
+                    />
+                    <AiFillCamera fontSize="20px" color="white" />
+                  </Box>
+                </Box>
               </Box>
             </HStack>
             <HStack gap={2} w="full">
@@ -52,7 +125,7 @@ const EditProfileModal = ({ isOpen, onClose }) => {
           </VStack>
         </ModalBody>
         <ModalFooter gap={2}>
-          <Button>Update</Button>
+          <Button onClick={updateModifiedData}>Update</Button>
           <Button onClick={onClose}>Close</Button>
         </ModalFooter>
       </ModalContent>

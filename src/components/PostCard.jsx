@@ -9,29 +9,35 @@ import {
 } from "@chakra-ui/react";
 import { BsBookmark } from "react-icons/bs";
 import { AiOutlineHeart } from "react-icons/ai";
+import { BsBookmarkFill } from "react-icons/bs";
 import { MdOutlineModeComment } from "react-icons/md";
 import { CommentBox } from "../components";
+import { useDispatch, useSelector } from "react-redux";
+import { bookmarkPost, removeBookMarkedPost } from "../redux/asyncThunk";
 
-const PostCard = () => {
+const PostCard = ({ post }) => {
+  const dispatch = useDispatch();
+  const { token, bookmarks } = useSelector((state) => state.auth);
+
+  const alreadyBookmarked = bookmarks.some(
+    (bookmarkedPost) => bookmarkedPost._id === post._id
+  );
+  const bookmarkPostHandler = () => {
+    if (alreadyBookmarked)
+      dispatch(removeBookMarkedPost({ postId: post._id, token }));
+    else dispatch(bookmarkPost({ postId: post._id, token }));
+  };
   return (
     <Box backgroundColor={"gray.50"} width={"50%"} p={4} minWidth={"300px"}>
       <Flex flexDirection={"column"} justifyContent={"center"} gap={4}>
         <HStack>
-          <Avatar
-            size="sm"
-            src="https://res.cloudinary.com/meghanaskcloud/image/upload/v1654017743/Social%20media/ben-sweet-2LowviVHZ-E-unsplash_alm3ek.jpg"
-          ></Avatar>
-          <Text fontWeight={"bold"}>Meghana</Text>
-          <Text>@meghanask</Text>
+          <Avatar size="sm" src={post?.profilePic}></Avatar>
+          <Text fontWeight={"bold"}>
+            {post?.firstName} {post?.lastName}
+          </Text>
+          <Text>@{post?.username}</Text>
         </HStack>
-        <Text>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci
-          voluptatum error minima, sit ad cumque quidem, molestias esse quae et
-          dolorem sapiente sunt enim, exercitationem incidunt. Repellat ad aut
-          fugit recusandae sint porro quas aperiam tenetur eos impedit animi,
-          laboriosam odit itaque debitis voluptate ipsum pariatur repellendus
-          similique sequi. Reiciendis.
-        </Text>
+        <Text>{post?.content}</Text>
         <HStack justifyContent={"space-between"}>
           <Tooltip label="Like" fontSize="sm">
             <IconButton icon={<AiOutlineHeart />}></IconButton>
@@ -40,7 +46,10 @@ const PostCard = () => {
             <IconButton icon={<MdOutlineModeComment />}></IconButton>
           </Tooltip>
           <Tooltip label="Bookmark" fontSize="sm">
-            <IconButton icon={<BsBookmark />}></IconButton>
+            <IconButton
+              icon={alreadyBookmarked ? <BsBookmarkFill /> : <BsBookmark />}
+              onClick={bookmarkPostHandler}
+            ></IconButton>
           </Tooltip>
         </HStack>
         <CommentBox />
