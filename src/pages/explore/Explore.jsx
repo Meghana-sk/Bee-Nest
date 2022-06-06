@@ -7,7 +7,6 @@ import { getPosts } from "../../redux/asyncThunk";
 const Explore = () => {
   const dispatch = useDispatch();
   const { posts } = useSelector((state) => state.posts);
-  console.log(posts);
 
   useEffect(() => {
     dispatch(getPosts());

@@ -70,6 +70,7 @@ export const users = [
           "https://res.cloudinary.com/meghanaskcloud/image/upload/v1654444111/Social%20media/profile%20pics/elonmusk_Profile_lro5gn.jpg",
       },
     ],
+    bookmarks: [],
   },
   /** user 2 */
   {
@@ -84,6 +85,7 @@ export const users = [
     updatedAt: formatDate(),
     following: [],
     followers: [],
+    bookmarks: [],
   },
   /** user 3 */
   {
@@ -97,6 +99,7 @@ export const users = [
     updatedAt: formatDate(),
     following: [],
     followers: [],
+    bookmarks: [],
   },
   /** user 4 */
   {
@@ -154,6 +157,7 @@ export const users = [
           "https://res.cloudinary.com/meghanaskcloud/image/upload/v1654448703/Social%20media/profile%20pics/SK_ehvid9.jpg",
       },
     ],
+    bookmarks: [],
   },
   /** user 5 */
   {
@@ -226,5 +230,6 @@ export const users = [
           "https://res.cloudinary.com/meghanaskcloud/image/upload/v1654444111/Social%20media/profile%20pics/elonmusk_Profile_lro5gn.jpg",
       },
     ],
+    bookmarks: [],
   },
 ];

@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { getPosts } from "../asyncThunk";
 
-const initialState = { posts: [], isLoading: false };
+const initialState = { posts: [], bookmarks: [], isLoading: false };
 
 const postsSlice = createSlice({
   name: "posts",

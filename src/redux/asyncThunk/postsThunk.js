@@ -33,4 +33,4 @@ const newPost = createAsyncThunk(
   }
 );
 
-export { getPosts };
+export { getPosts, newPost };

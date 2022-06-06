@@ -1,3 +1,9 @@
-export { login, signup, editUser } from "./authThunk";
-export { getPosts } from "./postsThunk";
-export { getUsers } from "./usersThunk";
+export {
+  login,
+  signup,
+  editUser,
+  bookmarkPost,
+  removeBookMarkedPost,
+} from "./authThunk";
+export { getPosts, newPost } from "./postsThunk";
+export { getUsers, getBookmarksForAuthUser } from "./usersThunk";
