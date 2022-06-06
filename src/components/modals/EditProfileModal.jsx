@@ -105,6 +105,7 @@ const EditProfileModal = ({ isOpen, onClose, userProfile }) => {
                       bgColor="red.100"
                       p="0"
                       cursor={"pointer"}
+                      onChange={updateProfileImageHandler}
                     />
                     <AiFillCamera fontSize="20px" color="white" />
                   </Box>
@@ -128,7 +129,7 @@ const EditProfileModal = ({ isOpen, onClose, userProfile }) => {
           </VStack>
         </ModalBody>
         <ModalFooter gap={2}>
-          <Button>Update</Button>
+          <Button onClick={updateModifiedData}>Update</Button>
           <Button onClick={onClose}>Close</Button>
         </ModalFooter>
       </ModalContent>

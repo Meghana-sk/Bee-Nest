@@ -6,11 +6,20 @@ import { PostCard } from "../../components";
 
 const Home = () => {
   const { posts } = useSelector((state) => state.posts);
+  const { user } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getPosts());
   }, [dispatch]);
+
+  /** The feed is filled with users the loggedin user is following */
+  let feedUsers = user.following
+    ? user.following.map((user) => user.username)
+    : null;
+  feedUsers = [...feedUsers, user.username];
+
+  const feedPosts = posts.filter((post) => feedUsers.includes(post.username));
 
   return (
     <Box
@@ -32,8 +41,8 @@ const Home = () => {
           </Tab>
         </TabList>
       </Tabs>
-      {posts.length ? (
-        posts.map((post) => <PostCard key={post._id} />)
+      {feedPosts.length ? (
+        feedPosts.map((post) => <PostCard key={post._id} post={post} />)
       ) : (
         <p>There are no posts to display</p>
       )}

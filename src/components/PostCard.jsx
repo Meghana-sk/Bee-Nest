@@ -17,13 +17,13 @@ const PostCard = ({ post }) => {
     <Box backgroundColor={"gray.50"} width={"50%"} p={4} minWidth={"300px"}>
       <Flex flexDirection={"column"} justifyContent={"center"} gap={4}>
         <HStack>
-          <Avatar size="sm" src={post.profilePic}></Avatar>
+          <Avatar size="sm" src={post?.profilePic}></Avatar>
           <Text fontWeight={"bold"}>
-            {post.firstName} {post.lastName}
+            {post?.firstName} {post?.lastName}
           </Text>
-          <Text>@{post.username}</Text>
+          <Text>@{post?.username}</Text>
         </HStack>
-        <Text>{post.content}</Text>
+        <Text>{post?.content}</Text>
         <HStack justifyContent={"space-between"}>
           <Tooltip label="Like" fontSize="sm">
             <IconButton icon={<AiOutlineHeart />}></IconButton>

@@ -131,7 +131,7 @@ export const posts = [
           firstName: "Johnson",
           lastName: "Charles",
           username: "johns24",
-          avatarURL:
+          profilePic:
             "https://res.cloudinary.com/abhijeetscloud/image/upload/v1653718578/userFour_zrkbid.jpg",
         },
         {
@@ -139,7 +139,7 @@ export const posts = [
           firstName: "Peter",
           lastName: "Watson",
           username: "piet",
-          avatarURL:
+          profilePic:
             "https://res.cloudinary.com/abhijeetscloud/image/upload/v1653718600/userThree_qat0za.jpg",
         },
         {
@@ -147,7 +147,7 @@ export const posts = [
           firstName: "Bruce",
           lastName: "Clarke",
           username: "clarky",
-          avatarURL:
+          profilePic:
             "https://res.cloudinary.com/abhijeetscloud/image/upload/v1653718583/userSix_hjf46y.jpg",
         },
       ],
@@ -156,7 +156,7 @@ export const posts = [
     username: "johnDoe",
     firstName: "John",
     lastName: "Doe",
-    avatarURL:
+    profilePic:
       "https://res.cloudinary.com/abhijeetscloud/image/upload/v1653718256/userTwo_zuhg40.jpg",
     createdAt: formatDate(),
     updatedAt: formatDate(),
@@ -164,7 +164,8 @@ export const posts = [
   },
   {
     _id: uuid(),
-    content: "Let bygones be bygones.",
+    content:
+      "Don't hate errors and bugs. They're not your enemies. It's a part of your programming journey. See errors and bugs as a sign that you're pushing your boundaries. It shows growth.",
     likes: {
       likeCount: 2,
       likedBy: [
@@ -173,16 +174,16 @@ export const posts = [
           firstName: "Guest",
           lastName: "User",
           username: "Guest123",
-          avatarURL:
+          profilePic:
             "https://res.cloudinary.com/abhijeetscloud/image/upload/v1653718247/userOne_xot5gc.jpg",
         },
         {
           _id: "1b288c33-ff6d-49c0-a8d3-58b297f1454",
-          firstName: "John",
-          lastName: "Doe",
-          username: "johnDoe",
-          avatarURL:
-            "https://res.cloudinary.com/abhijeetscloud/image/upload/v1653718256/userTwo_zuhg40.jpg",
+          firstName: "Akanksha",
+          lastName: "Choudhary",
+          username: "ch_akanksha",
+          profilePic:
+            "https://res.cloudinary.com/meghanaskcloud/image/upload/v1654447086/Social%20media/profile%20pics/akankshachoudhary_profile_pukemu.jpg",
         },
       ],
       dislikedBy: [],
@@ -190,7 +191,7 @@ export const posts = [
     username: "clarky",
     firstName: "Bruce",
     lastName: "Clarke",
-    avatarURL:
+    profilePic:
       "https://res.cloudinary.com/abhijeetscloud/image/upload/v1653718583/userSix_hjf46y.jpg",
     comments: [],
     createdAt: formatDate(),
@@ -207,7 +208,7 @@ export const posts = [
           firstName: "Adarsh",
           lastName: "Balika",
           username: "adarshbalika",
-          avatarURL:
+          profilePic:
             "https://res.cloudinary.com/abhijeetscloud/image/upload/v1653718283/profile_y24uvb.jpg",
         },
         {
@@ -215,7 +216,7 @@ export const posts = [
           firstName: "James",
           lastName: "Sheldon",
           username: "jamie",
-          avatarURL:
+          profilePic:
             "https://res.cloudinary.com/abhijeetscloud/image/upload/v1653718614/userFive_dp8dgl.jpg",
         },
         {
@@ -223,7 +224,7 @@ export const posts = [
           firstName: "Johnson",
           lastName: "Charles",
           username: "johns24",
-          avatarURL:
+          profilePic:
             "https://res.cloudinary.com/abhijeetscloud/image/upload/v1653718578/userFour_zrkbid.jpg",
         },
         {
@@ -231,7 +232,7 @@ export const posts = [
           firstName: "Peter",
           lastName: "Watson",
           username: "piet",
-          avatarURL:
+          profilePic:
             "https://res.cloudinary.com/abhijeetscloud/image/upload/v1653718600/userThree_qat0za.jpg",
         },
       ],
@@ -240,8 +241,8 @@ export const posts = [
     username: "Guest123",
     firstName: "Guest",
     lastName: "User",
-    avatarURL:
-      "https://res.cloudinary.com/abhijeetscloud/image/upload/v1653718247/userOne_xot5gc.jpg",
+    profilePic:
+      "https://res.cloudinary.com/meghanaskcloud/image/upload/v1654450830/Social%20media/profile%20pics/oppo-HA5rQ_XfBD0-unsplash_bqovmv.jpg",
     comments: [],
     createdAt: formatDate(),
     updatedAt: formatDate(),
@@ -257,7 +258,7 @@ export const posts = [
           firstName: "Adarsh",
           lastName: "Balika",
           username: "adarshbalika",
-          avatarURL:
+          profilePic:
             "https://res.cloudinary.com/abhijeetscloud/image/upload/v1653718283/profile_y24uvb.jpg",
         },
         {
@@ -265,7 +266,7 @@ export const posts = [
           firstName: "Johnson",
           lastName: "Charles",
           username: "johns24",
-          avatarURL:
+          profilePic:
             "https://res.cloudinary.com/abhijeetscloud/image/upload/v1653718578/userFour_zrkbid.jpg",
         },
         {
@@ -273,8 +274,8 @@ export const posts = [
           firstName: "Guest",
           lastName: "User",
           username: "Guest123",
-          avatarURL:
-            "https://res.cloudinary.com/abhijeetscloud/image/upload/v1653718247/userOne_xot5gc.jpg",
+          profilePic:
+            "https://res.cloudinary.com/meghanaskcloud/image/upload/v1654450830/Social%20media/profile%20pics/oppo-HA5rQ_XfBD0-unsplash_bqovmv.jpg",
         },
       ],
       dislikedBy: [],
@@ -282,7 +283,7 @@ export const posts = [
     username: "piet",
     firstName: "Peter",
     lastName: "Watson",
-    avatarURL:
+    profilePic:
       "https://res.cloudinary.com/abhijeetscloud/image/upload/v1653718600/userThree_qat0za.jpg",
     comments: [],
     createdAt: formatDate(),
@@ -299,7 +300,7 @@ export const posts = [
           firstName: "Adarsh",
           lastName: "Balika",
           username: "adarshbalika",
-          avatarURL:
+          profilePic:
             "https://res.cloudinary.com/abhijeetscloud/image/upload/v1653718283/profile_y24uvb.jpg",
         },
 
@@ -308,7 +309,7 @@ export const posts = [
           firstName: "Bruce",
           lastName: "Clarke",
           username: "clarky",
-          avatarURL:
+          profilePic:
             "https://res.cloudinary.com/abhijeetscloud/image/upload/v1653718583/userSix_hjf46y.jpg",
         },
         {
@@ -316,7 +317,7 @@ export const posts = [
           firstName: "Peter",
           lastName: "Watson",
           username: "piet",
-          avatarURL:
+          profilePic:
             "https://res.cloudinary.com/abhijeetscloud/image/upload/v1653718600/userThree_qat0za.jpg",
         },
         {
@@ -324,7 +325,7 @@ export const posts = [
           firstName: "Johnson",
           lastName: "Charles",
           username: "johns24",
-          avatarURL:
+          profilePic:
             "https://res.cloudinary.com/abhijeetscloud/image/upload/v1653718578/userFour_zrkbid.jpg",
         },
         {
@@ -332,7 +333,7 @@ export const posts = [
           firstName: "James",
           lastName: "Sheldon",
           username: "jamie",
-          avatarURL:
+          profilePic:
             "https://res.cloudinary.com/abhijeetscloud/image/upload/v1653718614/userFive_dp8dgl.jpg",
         },
       ],
@@ -341,8 +342,8 @@ export const posts = [
     username: "Guest123",
     firstName: "Guest",
     lastName: "User",
-    avatarURL:
-      "https://res.cloudinary.com/abhijeetscloud/image/upload/v1653718247/userOne_xot5gc.jpg",
+    profilePic:
+      "https://res.cloudinary.com/meghanaskcloud/image/upload/v1654450830/Social%20media/profile%20pics/oppo-HA5rQ_XfBD0-unsplash_bqovmv.jpg",
     comments: [],
     createdAt: formatDate(),
     updatedAt: formatDate(),
@@ -358,7 +359,7 @@ export const posts = [
           firstName: "Peter",
           lastName: "Watson",
           username: "piet",
-          avatarURL:
+          profilePic:
             "https://res.cloudinary.com/abhijeetscloud/image/upload/v1653718600/userThree_qat0za.jpg",
         },
         {
@@ -366,7 +367,7 @@ export const posts = [
           firstName: "Johnson",
           lastName: "Charles",
           username: "johns24",
-          avatarURL:
+          profilePic:
             "https://res.cloudinary.com/abhijeetscloud/image/upload/v1653718578/userFour_zrkbid.jpg",
         },
         {
@@ -374,7 +375,7 @@ export const posts = [
           firstName: "Bruce",
           lastName: "Clarke",
           username: "clarky",
-          avatarURL:
+          profilePic:
             "https://res.cloudinary.com/abhijeetscloud/image/upload/v1653718583/userSix_hjf46y.jpg",
         },
       ],
@@ -383,7 +384,7 @@ export const posts = [
     username: "jamie",
     firstName: "James",
     lastName: "Sheldon",
-    avatarURL:
+    profilePic:
       "https://res.cloudinary.com/abhijeetscloud/image/upload/v1653718614/userFive_dp8dgl.jpg",
     comments: [],
     createdAt: formatDate(),
@@ -401,7 +402,7 @@ export const posts = [
           firstName: "Bruce",
           lastName: "Clarke",
           username: "clarky",
-          avatarURL:
+          profilePic:
             "https://res.cloudinary.com/abhijeetscloud/image/upload/v1653718583/userSix_hjf46y.jpg",
         },
         {
@@ -409,7 +410,7 @@ export const posts = [
           firstName: "Johnson",
           lastName: "Charles",
           username: "johns24",
-          avatarURL:
+          profilePic:
             "https://res.cloudinary.com/abhijeetscloud/image/upload/v1653718578/userFour_zrkbid.jpg",
         },
       ],
@@ -418,7 +419,7 @@ export const posts = [
     username: "adarshbalika",
     firstName: "Adarsh",
     lastName: "Balika",
-    avatarURL:
+    profilePic:
       "https://res.cloudinary.com/abhijeetscloud/image/upload/v1653718283/profile_y24uvb.jpg",
     comments: [],
     createdAt: formatDate(),
@@ -436,7 +437,7 @@ export const posts = [
           firstName: "Bruce",
           lastName: "Clarke",
           username: "clarky",
-          avatarURL:
+          profilePic:
             "https://res.cloudinary.com/abhijeetscloud/image/upload/v1653718583/userSix_hjf46y.jpg",
         },
         {
@@ -444,7 +445,7 @@ export const posts = [
           firstName: "Johnson",
           lastName: "Charles",
           username: "johns24",
-          avatarURL:
+          profilePic:
             "https://res.cloudinary.com/abhijeetscloud/image/upload/v1653718578/userFour_zrkbid.jpg",
         },
         {
@@ -452,7 +453,7 @@ export const posts = [
           firstName: "Adarsh",
           lastName: "Balika",
           username: "adarshbalika",
-          avatarURL:
+          profilePic:
             "https://res.cloudinary.com/abhijeetscloud/image/upload/v1653718283/profile_y24uvb.jpg",
         },
         {
@@ -460,8 +461,8 @@ export const posts = [
           firstName: "Guest",
           lastName: "User",
           username: "Guest123",
-          avatarURL:
-            "https://res.cloudinary.com/abhijeetscloud/image/upload/v1653718247/userOne_xot5gc.jpg",
+          profilePic:
+            "https://res.cloudinary.com/meghanaskcloud/image/upload/v1654450830/Social%20media/profile%20pics/oppo-HA5rQ_XfBD0-unsplash_bqovmv.jpg",
         },
         {
           _id: "1b288c33-ff6d-49c0-a8d3-58b297f1454",
@@ -469,7 +470,7 @@ export const posts = [
           lastName: "Doe",
           username: "johnDoe",
 
-          avatarURL:
+          profilePic:
             "https://res.cloudinary.com/abhijeetscloud/image/upload/v1653718256/userTwo_zuhg40.jpg",
         },
       ],
@@ -478,7 +479,7 @@ export const posts = [
     username: "johns24",
     firstName: "Johnson",
     lastName: "Charles",
-    avatarURL:
+    profilePic:
       "https://res.cloudinary.com/abhijeetscloud/image/upload/v1653718578/userFour_zrkbid.jpg",
     comments: [],
     createdAt: formatDate(),

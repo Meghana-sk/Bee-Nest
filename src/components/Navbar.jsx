@@ -14,10 +14,12 @@ import {
   AiOutlinePlusCircle,
 } from "react-icons/ai";
 import { BsBookmark } from "react-icons/bs";
+import { useSelector } from "react-redux";
 import { CreatePostModal } from "./modals/CreatePostModal";
 
 const Navbar = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const { user } = useSelector((state) => state.auth);
   return (
     <Box
       bg="white"
@@ -69,11 +71,7 @@ const Navbar = () => {
           </Tooltip>
           <Link to={"/profile"}>
             <Tooltip label="Profile">
-              <Avatar
-                size="sm"
-                src="https://res.cloudinary.com/meghanaskcloud/image/upload/v1654017744/Social%20media/aiony-haust-3TLl_97HNJo-unsplash_g1ezar.jpg"
-                ml={4}
-              ></Avatar>
+              <Avatar size="sm" src={user.profilePic} ml={4}></Avatar>
             </Tooltip>
           </Link>
         </div>

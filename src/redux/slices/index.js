@@ -1,3 +1,3 @@
-export { logout, updateUser } from "./authSlice";
-export { authReducer } from "./authSlice";
+export { logout, updateUser, authReducer } from "./authSlice";
 export { postsReducer } from "./postSlice";
+export { usersReducer } from "./usersSlice";
