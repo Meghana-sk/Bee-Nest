@@ -15,7 +15,7 @@ import {
   Avatar,
   Input,
 } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { AiFillCamera } from "react-icons/ai";
 import { toast } from "react-toastify";
@@ -31,10 +31,6 @@ const EditProfileModal = ({ isOpen, onClose, userProfile }) => {
     ...userProfile,
     avatarFile: "",
   });
-
-  const inputChangeHandler = (e) => {
-    setUserData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-  };
 
   const updateProfileImageHandler = (e) => {
     reader.readAsDataURL(e.target.files[0]);
