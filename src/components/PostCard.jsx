@@ -65,7 +65,6 @@ const PostCard = ({ post }) => {
   const isPostAlreadyLiked = likedBy.some(
     (like) => like.username === user?.username
   );
-  console.log(post);
 
   const likePostHandler = () => {
     isPostAlreadyLiked

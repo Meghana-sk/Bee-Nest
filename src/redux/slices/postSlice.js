@@ -56,7 +56,6 @@ const postsSlice = createSlice({
     },
     [likedPost.fulfilled]: (state, action) => {
       state.isLoading = false;
-      console.log("flfiled liked", action);
       state.posts = action.payload.data.posts;
     },
     [likedPost.rejected]: (state, action) => {
@@ -68,7 +67,6 @@ const postsSlice = createSlice({
     },
     [dislikedPost.fulfilled]: (state, action) => {
       state.isLoading = false;
-      console.log("flfiled", action.payload);
       state.posts = action.payload.data.posts;
     },
     [dislikedPost.rejected]: (state, action) => {

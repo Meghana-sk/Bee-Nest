@@ -29,11 +29,11 @@ const EditProfileModal = ({ isOpen, onClose, userProfile }) => {
 
   const [userData, setUserData] = useState({
     ...userProfile,
-    profilePic: "",
+    profileFile: "",
   });
 
   const inputChangeHandler = (e) => {
-    setUserData((prev) => ({ ...prev, [e.target]: e.target.value }));
+    setUserData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
   const updateProfileImageHandler = (e) => {
@@ -42,37 +42,43 @@ const EditProfileModal = ({ isOpen, onClose, userProfile }) => {
       if (reader.readyState === 2) {
         setUserData({
           ...userData,
-          avatarURL: reader.result,
-          profilePic: e.target.files[0],
+          profilePic: reader.result,
+          profileFile: e.target.files[0],
         });
       } else {
         reader.abort();
         setUserData({
           ...userData,
-          avatarURL: "",
           profilePic: "",
+          profileFile: "",
         });
       }
     };
   };
 
-  const updateModifiedData = (data) => {
+  const updateModifiedData = async () => {
     try {
-      const response = dispatch(editUser({ userData: data, token }));
+      const response = await dispatch(editUser({ userData, token }));
       if (response.payload.status === 201) {
         setUserData(response.payload.data.user);
         dispatch(updateUser(response?.payload.data.user));
-        toast.info("Profile Updated Successfully!!");
+        toast.info("Profile updated successfully!!");
       } else {
         toast.error(`${response?.payload?.data?.errors[0]}`);
       }
     } catch (error) {
       toast.error(error);
     }
+    onClose();
+  };
+
+  const closeClickHandler = () => {
+    setUserData(() => userProfile);
+    onClose();
   };
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose}>
+    <Modal isOpen={isOpen} onClose={closeClickHandler}>
       <ModalOverlay />
       <ModalContent>
         <ModalHeader>Edit Profile</ModalHeader>
@@ -83,8 +89,8 @@ const EditProfileModal = ({ isOpen, onClose, userProfile }) => {
               <Text>Avatar</Text>
               <Box position="relative">
                 <Avatar
-                  name="S K Meghana"
-                  src="https://res.cloudinary.com/meghanaskcloud/image/upload/v1654017744/Social%20media/aiony-haust-3TLl_97HNJo-unsplash_g1ezar.jpg"
+                  name={userProfile.firstName + " " + userProfile.lastName}
+                  src={userData?.profilePic || userProfile.profilePic}
                   size="lg"
                 ></Avatar>
                 <Box
@@ -114,8 +120,12 @@ const EditProfileModal = ({ isOpen, onClose, userProfile }) => {
             <HStack gap={2} w="full">
               <Text>Website</Text>
               <Input
-                placeholder="https://sk-meghana.netlify.app"
+                type="text"
+                placeholder="https://guest.com"
                 borderRadius="md"
+                name="website"
+                value={userData?.website}
+                onChange={inputChangeHandler}
               ></Input>
             </HStack>
             <HStack gap="2.7rem" w="full">
@@ -123,13 +133,20 @@ const EditProfileModal = ({ isOpen, onClose, userProfile }) => {
               <Textarea
                 borderRadius={"md"}
                 placeholder="Passionate builder"
+                name="bio"
+                value={userData?.bio}
+                onChange={inputChangeHandler}
               ></Textarea>
             </HStack>
           </VStack>
         </ModalBody>
         <ModalFooter gap={2}>
-          <Button onClick={updateModifiedData}>Update</Button>
-          <Button onClick={onClose}>Close</Button>
+          <Button colorScheme={"red"} onClick={closeClickHandler}>
+            Close
+          </Button>
+          <Button onClick={updateModifiedData} colorScheme={"purple"}>
+            Update
+          </Button>
         </ModalFooter>
       </ModalContent>
     </Modal>

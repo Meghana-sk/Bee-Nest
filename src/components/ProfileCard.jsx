@@ -7,6 +7,7 @@ import {
   HStack,
   VStack,
   Button,
+  Link,
   useDisclosure,
 } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
@@ -25,6 +26,7 @@ const ProfileCard = ({ profileDetails = {}, numberOfPosts }) => {
     lastName,
     profilePic,
     bio,
+    website,
     following,
     followers,
   } = profileDetails;
@@ -52,6 +54,9 @@ const ProfileCard = ({ profileDetails = {}, numberOfPosts }) => {
         <Text borderRadius={"md"} placeholder="bio">
           {bio}
         </Text>
+        <Link color={"blue.600"} href={website} isExternal>
+          {website}
+        </Link>
         <HStack maxW={"500px"} bg="white" borderRadius="lg">
           <VStack py="2" px="4">
             <Text fontWeight="700">{numberOfPosts}</Text>
