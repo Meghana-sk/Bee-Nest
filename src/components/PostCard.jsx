@@ -19,7 +19,7 @@ import { BsBookmarkFill, BsFillHeartFill } from "react-icons/bs";
 import { MdOutlineModeComment } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
-import { CommentBox, PostModal } from "../components";
+import { CommentCard, CommentBox, PostModal } from "../components";
 import {
   bookmarkPost,
   removeBookMarkedPost,
@@ -60,6 +60,7 @@ const PostCard = ({ post }) => {
 
   const {
     likes: { likedBy, likeCount },
+    comments,
   } = post;
 
   const isPostAlreadyLiked = likedBy.some(
@@ -137,6 +138,9 @@ const PostCard = ({ post }) => {
           </Box>
         </HStack>
         <CommentBox />
+        {comments.length
+          ? comments.map((comment) => <CommentCard comment={comment} />)
+          : null}
       </Flex>
     </Box>
   );
