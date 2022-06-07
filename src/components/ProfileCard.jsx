@@ -15,10 +15,19 @@ import { toast } from "react-toastify";
 import { EditProfileModal } from "./modals/EditProfileModal";
 import { logout } from "../redux/slices";
 
-const ProfileCard = () => {
+const ProfileCard = ({ profileDetails = {}, numberOfPosts }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const {
+    username,
+    firstName,
+    lastName,
+    profilePic,
+    bio,
+    following,
+    followers,
+  } = profileDetails;
 
   const logoutHandler = () => {
     dispatch(logout());
@@ -34,26 +43,25 @@ const ProfileCard = () => {
         justifyContent={"center"}
         alignItems={"center"}
       >
-        <Avatar
-          size={"xl"}
-          src="https://res.cloudinary.com/meghanaskcloud/image/upload/v1654017744/Social%20media/aiony-haust-3TLl_97HNJo-unsplash_g1ezar.jpg"
-        ></Avatar>
-        <Heading>Meghana S K</Heading>
-        <Text>@meghanask</Text>
+        <Avatar size={"xl"} src={profilePic}></Avatar>
+        <Heading>
+          {firstName} {lastName}
+        </Heading>
+        <Text>@{username}</Text>
         <Text borderRadius={"md"} placeholder="bio">
-          Engineer | Traveller
+          {bio}
         </Text>
         <HStack maxW={"500px"} bg="white" borderRadius="lg">
           <VStack py="2" px="4">
-            <Text fontWeight="700">200</Text>
+            <Text fontWeight="700">{numberOfPosts}</Text>
             <Text>Posts</Text>
           </VStack>
           <VStack py="2" px="4">
-            <Text fontWeight="700">5m</Text>
+            <Text fontWeight="700">{followers.length}</Text>
             <Text>Followers</Text>
           </VStack>
           <VStack py="2" px="4">
-            <Text fontWeight="700">100</Text>
+            <Text fontWeight="700">{following.length}</Text>
             <Text>Following</Text>
           </VStack>
         </HStack>
