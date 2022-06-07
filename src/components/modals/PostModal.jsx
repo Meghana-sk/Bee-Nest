@@ -14,9 +14,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { newPost, editPost } from "../../redux/asyncThunk";
 
-const PostModal = ({ isOpen, onClose, isEditPost = false, postData = {} }) => {
+const PostModal = ({
+  isOpen,
+  onClose,
+  isEditPost = false,
+  postEditData = {},
+}) => {
   const [postDetails, setPostDetails] = useState({
-    content: isEditPost ? postData.content : "",
+    content: isEditPost ? postEditData.content : "",
   });
 
   const dispatch = useDispatch();
@@ -30,6 +35,7 @@ const PostModal = ({ isOpen, onClose, isEditPost = false, postData = {} }) => {
       } else {
         toast.error(response.payload.data.errors[0]);
       }
+      setPostDetails({ content: "" });
       closePostHandler();
     } catch (error) {
       toast.error(error);
@@ -38,7 +44,6 @@ const PostModal = ({ isOpen, onClose, isEditPost = false, postData = {} }) => {
 
   const editPostAction = (updatedData) => {
     try {
-      console.log("action edit", postData);
       const response = dispatch(editPost({ postData: updatedData, token }));
       if (response?.payload.status === 201) {
         toast.info("Post updated successfully!!");
@@ -54,8 +59,8 @@ const PostModal = ({ isOpen, onClose, isEditPost = false, postData = {} }) => {
   const closePostHandler = () => {
     if (!isEditPost) {
       setPostDetails({ content: "" });
-      postData = {};
     }
+    onClose();
   };
 
   const addPostHandler = () => {
@@ -64,17 +69,17 @@ const PostModal = ({ isOpen, onClose, isEditPost = false, postData = {} }) => {
     } else {
       toast.warning("Post content can not be empty");
     }
-    onClose();
+    closePostHandler();
   };
 
   const editPostHandler = () => {
     if (postDetails.content !== "") {
-      const editData = { ...postData, content: postDetails.content };
+      const editData = postDetails.content;
       editPostAction(editData);
     } else {
       toast.warning("Post can't be empty");
     }
-    onClose();
+    closePostHandler();
   };
 
   return (

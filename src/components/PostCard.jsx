@@ -41,11 +41,10 @@ const PostCard = ({ post }) => {
     else dispatch(bookmarkPost({ postId: post._id, token }));
   };
 
-  console.log(user, post);
   const isCurrentLoggedInUsersPost = user.username === post.username;
 
-  const deletePostHandler = async () => {
-    const response = await dispatch(deletePost({ post, token }));
+  const deletePostHandler = () => {
+    const response = dispatch(deletePost({ post, token }));
     try {
       if (response?.payload.status === 201) {
         toast.info("Post deleted successfully!!");
@@ -91,7 +90,7 @@ const PostCard = ({ post }) => {
             isOpen={isOpen}
             onClose={onClose}
             isEditPost={true}
-            postData={post}
+            postEditData={post}
           />
         ) : null}
         <HStack justifyContent={"space-between"}>
