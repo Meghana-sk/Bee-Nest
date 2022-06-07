@@ -22,8 +22,6 @@ const PostModal = ({ isOpen, onClose, isEditPost = false, postData = {} }) => {
   const dispatch = useDispatch();
   const { token } = useSelector((state) => state.auth);
 
-  const fileReader = new FileReader();
-
   const createPost = (data) => {
     try {
       const response = dispatch(newPost({ postData: data, token }));
