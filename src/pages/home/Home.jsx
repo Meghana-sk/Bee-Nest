@@ -19,7 +19,9 @@ const Home = () => {
     : null;
   feedUsers = [...feedUsers, user.username];
 
-  const feedPosts = posts.filter((post) => feedUsers.includes(post.username));
+  const feedPosts = posts
+    .filter((post) => feedUsers.includes(post.username))
+    .reverse();
 
   return (
     <Box
