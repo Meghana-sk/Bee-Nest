@@ -19,7 +19,7 @@ import { BsBookmarkFill } from "react-icons/bs";
 import { MdOutlineModeComment } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
-import { CommentBox } from "../components";
+import { CommentBox, PostModal } from "../components";
 import {
   bookmarkPost,
   removeBookMarkedPost,
@@ -41,6 +41,7 @@ const PostCard = ({ post }) => {
     else dispatch(bookmarkPost({ postId: post._id, token }));
   };
 
+  console.log(user, post);
   const isCurrentLoggedInUsersPost = user.username === post.username;
 
   const deletePostHandler = async () => {
@@ -77,7 +78,7 @@ const PostCard = ({ post }) => {
                   icon={<AiOutlineEllipsis />}
                 />
               </MenuButton>
-              <MenuList minWidth="140px">
+              <MenuList minWidth="100px">
                 <MenuItem onClick={onOpen}>Edit</MenuItem>
                 <MenuItem onClick={deletePostHandler}>Delete</MenuItem>
               </MenuList>
@@ -85,6 +86,14 @@ const PostCard = ({ post }) => {
           )}
         </HStack>
         <Text>{post?.content}</Text>
+        {isCurrentLoggedInUsersPost ? (
+          <PostModal
+            isOpen={isOpen}
+            onClose={onClose}
+            isEditPost={true}
+            postData={post}
+          />
+        ) : null}
         <HStack justifyContent={"space-between"}>
           <Tooltip label="Like" fontSize="sm">
             <IconButton icon={<AiOutlineHeart />}></IconButton>

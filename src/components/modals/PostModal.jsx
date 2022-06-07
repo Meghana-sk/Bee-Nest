@@ -12,14 +12,9 @@ import {
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
-import { newPost } from "../../redux/asyncThunk";
+import { newPost, editPost } from "../../redux/asyncThunk";
 
-const CreatePostModal = ({
-  isOpen,
-  onClose,
-  isEditPost = false,
-  postData = {},
-}) => {
+const PostModal = ({ isOpen, onClose, isEditPost = false, postData = {} }) => {
   const [postDetails, setPostDetails] = useState({
     content: isEditPost ? postData.content : "",
   });
@@ -29,11 +24,26 @@ const CreatePostModal = ({
 
   const fileReader = new FileReader();
 
-  const createPost = async (data) => {
+  const createPost = (data) => {
     try {
-      const response = await dispatch(newPost({ postData: data, token }));
+      const response = dispatch(newPost({ postData: data, token }));
       if (response?.payload.status === 201) {
         toast.info("Post added successfully!!");
+      } else {
+        toast.error(response.payload.data.errors[0]);
+      }
+      closePostHandler();
+    } catch (error) {
+      toast.error(error);
+    }
+  };
+
+  const editPostAction = (updatedData) => {
+    try {
+      console.log("action edit", postData);
+      const response = dispatch(editPost({ postData: updatedData, token }));
+      if (response?.payload.status === 201) {
+        toast.info("Post updated successfully!!");
       } else {
         toast.error(response.payload.data.errors[0]);
       }
@@ -48,22 +58,32 @@ const CreatePostModal = ({
       setPostDetails({ content: "" });
       postData = {};
     }
-    onClose(false);
   };
 
-  const addPostHandler = async () => {
+  const addPostHandler = () => {
     if (postDetails.content !== "") {
       createPost(postDetails);
     } else {
       toast.warning("Post content can not be empty");
     }
+    onClose();
+  };
+
+  const editPostHandler = () => {
+    if (postDetails.content !== "") {
+      const editData = { ...postData, content: postDetails.content };
+      editPostAction(editData);
+    } else {
+      toast.warning("Post can't be empty");
+    }
+    onClose();
   };
 
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <ModalOverlay />
       <ModalContent>
-        <ModalHeader>Create post</ModalHeader>
+        <ModalHeader>{isEditPost ? "Edit post" : "Create post"}</ModalHeader>
         <ModalCloseButton />
         <ModalBody>
           <Textarea
@@ -81,8 +101,11 @@ const CreatePostModal = ({
           <Button colorScheme="red" mr={3} onClick={onClose}>
             Close
           </Button>
-          <Button colorScheme={"blue"} onClick={addPostHandler}>
-            Post
+          <Button
+            colorScheme={"blue"}
+            onClick={isEditPost ? editPostHandler : addPostHandler}
+          >
+            {isEditPost ? "Update" : "Post"}
           </Button>
         </ModalFooter>
       </ModalContent>
@@ -90,4 +113,4 @@ const CreatePostModal = ({
   );
 };
 
-export { CreatePostModal };
+export { PostModal };

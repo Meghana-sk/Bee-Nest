@@ -15,7 +15,7 @@ import {
 } from "react-icons/ai";
 import { BsBookmark } from "react-icons/bs";
 import { useSelector } from "react-redux";
-import { CreatePostModal } from "./modals/CreatePostModal";
+import { PostModal } from "./modals/PostModal";
 
 const Navbar = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -76,7 +76,7 @@ const Navbar = () => {
           </Link>
         </div>
       </HStack>
-      <CreatePostModal isOpen={isOpen} onClose={onClose} />
+      <PostModal isOpen={isOpen} onClose={onClose} />
     </Box>
   );
 };

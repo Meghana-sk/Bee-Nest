@@ -36,14 +36,16 @@ const newPost = createAsyncThunk(
 const editPost = createAsyncThunk(
   "posts/editPost",
   async ({ postData, token }, { rejectWithValue }) => {
+    console.log("in edit thunk", postData);
     try {
       const response = await axios.post(
-        "/api/posts",
+        `/api/posts/edit/${postData._id}`,
         { postData },
         {
           headers: { authorization: token },
         }
       );
+      console.log("edit resposme", response);
       const data = { data: response.data, status: response.status };
       return data;
     } catch (error) {

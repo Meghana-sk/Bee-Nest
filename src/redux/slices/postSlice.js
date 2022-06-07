@@ -34,7 +34,7 @@ const postsSlice = createSlice({
     },
     [editPost.rejected]: (state, action) => {
       state.isLoading = false;
-      toast.error(action.payload.data.errors[0]);
+      toast.error(action?.payload?.data?.errors[0]);
     },
     [deletePost.fulfilled]: (state, action) => {
       state.isLoading = false;
