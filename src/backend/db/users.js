@@ -96,7 +96,7 @@ export const users = [
     lastName: "Choudhary",
     username: "ch_akanksha",
     password: "Coderchachi@2022",
-    website: "https://sk-meghana.netlify.app",
+    website: "https://github.com/akankshach29",
     bio: "shaping careers @neogcamp (https://neog.camp) | Curates JS interview qs on IG ",
     profilePic:
       "https://res.cloudinary.com/meghanaskcloud/image/upload/v1654447086/Social%20media/profile%20pics/akankshachoudhary_profile_pukemu.jpg",
@@ -113,7 +113,7 @@ export const users = [
     firstName: "Elon",
     lastName: "Musk",
     password: "TechIsLove@22",
-    website: "https://sk-meghana.netlify.app",
+    website: "https://www.forbes.com/profile/elon-musk/",
     bio: "Tesla | SpaceX",
     profilePic:
       "https://res.cloudinary.com/meghanaskcloud/image/upload/v1654444111/Social%20media/profile%20pics/elonmusk_Profile_lro5gn.jpg",
@@ -174,7 +174,7 @@ export const users = [
     firstName: "Tanay",
     lastName: "Pratap",
     bio: `Founder @invactHQ | x@Microsoft | Fixing education | Mentored 100+ students to first tech job | Tweets: Tech, Education, Career, Metaverse and Startups.`,
-    website: "https://sk-meghana.netlify.app",
+    website: "https://tanaypratap.com/",
     profilePic:
       "https://res.cloudinary.com/meghanaskcloud/image/upload/v1654444873/Social%20media/profile%20pics/tanaypratap_profile_lil10l.jpg",
     createdAt: formatDate(),

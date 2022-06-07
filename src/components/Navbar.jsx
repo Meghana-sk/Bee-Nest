@@ -33,7 +33,7 @@ const Navbar = () => {
         <Link to="/home">
           <Heading>BEE Nest</Heading>
         </Link>
-        <div display={"flex"}>
+        <div display={"flex"} alignItems={"center"}>
           <Link to={"/home"}>
             <Tooltip label="Home">
               <IconButton

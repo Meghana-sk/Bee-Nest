@@ -42,7 +42,7 @@ const ProfileCard = ({ profileDetails = {}, numberOfPosts }) => {
     <Box p={4}>
       <Flex
         flexDirection={"column"}
-        gap={4}
+        gap={3}
         justifyContent={"center"}
         alignItems={"center"}
       >
@@ -50,7 +50,9 @@ const ProfileCard = ({ profileDetails = {}, numberOfPosts }) => {
         <Heading>
           {firstName} {lastName}
         </Heading>
-        <Text>@{username}</Text>
+        <Text fontSize={`16px`} fontWeight="600">
+          @{username}
+        </Text>
         <Text borderRadius={"md"} placeholder="bio">
           {bio}
         </Text>
