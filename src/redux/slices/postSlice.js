@@ -1,6 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { toast } from "react-toastify";
-import { getPosts, newPost, editPost, deletePost } from "../asyncThunk";
+import {
+  getPosts,
+  newPost,
+  editPost,
+  deletePost,
+  likedPost,
+  dislikedPost,
+} from "../asyncThunk";
 
 const initialState = { posts: [], isLoading: false };
 
@@ -43,6 +50,30 @@ const postsSlice = createSlice({
     [deletePost.rejected]: (state, action) => {
       state.isLoading = false;
       toast.error(action?.payload?.data?.errors[0]);
+    },
+    [likedPost.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [likedPost.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      console.log("flfiled liked", action);
+      state.posts = action.payload.data.posts;
+    },
+    [likedPost.rejected]: (state, action) => {
+      state.isLoading = false;
+      toast.error(action.payload.data.errors[0]);
+    },
+    [dislikedPost.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [dislikedPost.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      console.log("flfiled", action.payload);
+      state.posts = action.payload.data.posts;
+    },
+    [dislikedPost.rejected]: (state, action) => {
+      state.isLoading = false;
+      toast.error(action.payload.data.errors[0]);
     },
   },
 });

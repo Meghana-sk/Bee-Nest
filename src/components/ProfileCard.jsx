@@ -9,7 +9,7 @@ import {
   Button,
   useDisclosure,
 } from "@chakra-ui/react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { EditProfileModal } from "./modals/EditProfileModal";
@@ -28,6 +28,7 @@ const ProfileCard = ({ profileDetails = {}, numberOfPosts }) => {
     following,
     followers,
   } = profileDetails;
+  const { user } = useSelector((state) => state.auth);
 
   const logoutHandler = () => {
     dispatch(logout());
@@ -74,7 +75,14 @@ const ProfileCard = ({ profileDetails = {}, numberOfPosts }) => {
           </Button>
         </HStack>
       </Flex>
-      {<EditProfileModal isOpen={isOpen} onOpen={onOpen} onClose={onClose} />}
+      {
+        <EditProfileModal
+          isOpen={isOpen}
+          onOpen={onOpen}
+          onClose={onClose}
+          userProfile={user}
+        />
+      }
     </Box>
   );
 };

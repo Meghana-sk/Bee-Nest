@@ -85,11 +85,26 @@ const PostModal = ({
   };
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose}>
+    <Modal
+      isOpen={isOpen}
+      onClose={() => {
+        isEditPost
+          ? setPostDetails({ content: postEditData.content })
+          : setPostDetails({ content: "" });
+        onClose();
+      }}
+    >
       <ModalOverlay />
       <ModalContent>
         <ModalHeader>{isEditPost ? "Edit post" : "Create post"}</ModalHeader>
-        <ModalCloseButton />
+        <ModalCloseButton
+          onClose={() => {
+            isEditPost
+              ? setPostDetails({ content: postEditData.content })
+              : setPostDetails({ content: "" });
+            onClose();
+          }}
+        />
         <ModalBody>
           <Textarea
             placeholder={"Write what you are thinking.."}
@@ -103,7 +118,16 @@ const PostModal = ({
         </ModalBody>
 
         <ModalFooter>
-          <Button colorScheme="red" mr={3} onClick={onClose}>
+          <Button
+            colorScheme="red"
+            mr={3}
+            onClick={() => {
+              isEditPost
+                ? setPostDetails({ content: postEditData.content })
+                : setPostDetails({ content: "" });
+              onClose();
+            }}
+          >
             Close
           </Button>
           <Button

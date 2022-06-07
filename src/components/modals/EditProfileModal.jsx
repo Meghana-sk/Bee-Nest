@@ -29,8 +29,12 @@ const EditProfileModal = ({ isOpen, onClose, userProfile }) => {
 
   const [userData, setUserData] = useState({
     ...userProfile,
-    avatarFile: "",
+    profilePic: "",
   });
+
+  const inputChangeHandler = (e) => {
+    setUserData((prev) => ({ ...prev, [e.target]: e.target.value }));
+  };
 
   const updateProfileImageHandler = (e) => {
     reader.readAsDataURL(e.target.files[0]);
@@ -39,22 +43,22 @@ const EditProfileModal = ({ isOpen, onClose, userProfile }) => {
         setUserData({
           ...userData,
           avatarURL: reader.result,
-          avatarFile: e.target.files[0],
+          profilePic: e.target.files[0],
         });
       } else {
         reader.abort();
         setUserData({
           ...userData,
           avatarURL: "",
-          avatarFile: "",
+          profilePic: "",
         });
       }
     };
   };
 
-  const updateModifiedData = async (data) => {
+  const updateModifiedData = (data) => {
     try {
-      const response = await dispatch(editUser({ userData: data, token }));
+      const response = dispatch(editUser({ userData: data, token }));
       if (response.payload.status === 201) {
         setUserData(response.payload.data.user);
         dispatch(updateUser(response?.payload.data.user));
@@ -64,7 +68,6 @@ const EditProfileModal = ({ isOpen, onClose, userProfile }) => {
       }
     } catch (error) {
       toast.error(error);
-    } finally {
     }
   };
 

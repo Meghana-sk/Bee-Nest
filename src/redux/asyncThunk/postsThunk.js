@@ -70,4 +70,48 @@ const deletePost = createAsyncThunk(
   }
 );
 
-export { getPosts, newPost, editPost, deletePost };
+const likedPost = createAsyncThunk(
+  "posts/likedPost",
+  async ({ post, token }, { rejectWithValue }) => {
+    try {
+      const response = axios.post(
+        `/api/posts/like/${post._id}`,
+        {},
+        {
+          headers: { authorization: token },
+        }
+      );
+      const data = { data: (await response).data, status: response.status };
+      return data;
+    } catch (error) {
+      rejectWithValue({
+        data: error.response.data,
+        status: error.response.status,
+      });
+    }
+  }
+);
+
+const dislikedPost = createAsyncThunk(
+  "posts/dislikedPost",
+  async ({ post, token }, { rejectWithValue }) => {
+    try {
+      const response = axios.post(
+        `/api/posts/dislike/${post._id}`,
+        {},
+        {
+          headers: { authorization: token },
+        }
+      );
+      const data = { data: (await response).data, status: response.status };
+      return data;
+    } catch (error) {
+      rejectWithValue({
+        data: error.response.data,
+        status: error.response.status,
+      });
+    }
+  }
+);
+
+export { getPosts, newPost, editPost, deletePost, likedPost, dislikedPost };
