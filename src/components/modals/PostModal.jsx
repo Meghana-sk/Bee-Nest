@@ -44,7 +44,9 @@ const PostModal = ({
 
   const editPostAction = (updatedData) => {
     try {
-      const response = dispatch(editPost({ postData: updatedData, token }));
+      const response = dispatch(
+        editPost({ postData: { ...postEditData, content: updatedData }, token })
+      );
       if (response?.payload.status === 201) {
         toast.info("Post updated successfully!!");
       } else {
