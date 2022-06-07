@@ -13,6 +13,7 @@ export const users = [
     username: "Guest123",
     password: "Guest@123",
     bio: "Hey there. Iam guest user",
+    website: "https://sk-meghana.netlify.app",
     profilePic:
       "https://res.cloudinary.com/meghanaskcloud/image/upload/v1654450830/Social%20media/profile%20pics/oppo-HA5rQ_XfBD0-unsplash_bqovmv.jpg",
     createdAt: formatDate(),
@@ -79,6 +80,7 @@ export const users = [
     username: "meghanask",
     password: "Msk@123",
     bio: "Engineer | neog-undergrad @neogcamp 2022 👻",
+    website: "https://sk-meghana.netlify.app",
     profilePic:
       "https://res.cloudinary.com/meghanaskcloud/image/upload/v1654448703/Social%20media/profile%20pics/SK_ehvid9.jpg",
     createdAt: formatDate(),
@@ -94,6 +96,7 @@ export const users = [
     lastName: "Choudhary",
     username: "ch_akanksha",
     password: "Coderchachi@2022",
+    website: "https://github.com/akankshach29",
     bio: "shaping careers @neogcamp (https://neog.camp) | Curates JS interview qs on IG ",
     profilePic:
       "https://res.cloudinary.com/meghanaskcloud/image/upload/v1654447086/Social%20media/profile%20pics/akankshachoudhary_profile_pukemu.jpg",
@@ -110,6 +113,7 @@ export const users = [
     firstName: "Elon",
     lastName: "Musk",
     password: "TechIsLove@22",
+    website: "https://www.forbes.com/profile/elon-musk/",
     bio: "Tesla | SpaceX",
     profilePic:
       "https://res.cloudinary.com/meghanaskcloud/image/upload/v1654444111/Social%20media/profile%20pics/elonmusk_Profile_lro5gn.jpg",
@@ -170,6 +174,7 @@ export const users = [
     firstName: "Tanay",
     lastName: "Pratap",
     bio: `Founder @invactHQ | x@Microsoft | Fixing education | Mentored 100+ students to first tech job | Tweets: Tech, Education, Career, Metaverse and Startups.`,
+    website: "https://tanaypratap.com/",
     profilePic:
       "https://res.cloudinary.com/meghanaskcloud/image/upload/v1654444873/Social%20media/profile%20pics/tanaypratap_profile_lil10l.jpg",
     createdAt: formatDate(),

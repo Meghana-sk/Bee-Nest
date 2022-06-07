@@ -15,7 +15,7 @@ import {
 } from "@chakra-ui/react";
 import { BsBookmark } from "react-icons/bs";
 import { AiOutlineHeart, AiOutlineEllipsis } from "react-icons/ai";
-import { BsBookmarkFill } from "react-icons/bs";
+import { BsBookmarkFill, BsFillHeartFill } from "react-icons/bs";
 import { MdOutlineModeComment } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
@@ -24,6 +24,8 @@ import {
   bookmarkPost,
   removeBookMarkedPost,
   deletePost,
+  likedPost,
+  dislikedPost,
 } from "../redux/asyncThunk";
 
 const PostCard = ({ post }) => {
@@ -54,6 +56,20 @@ const PostCard = ({ post }) => {
     } catch (error) {
       toast.error(error);
     }
+  };
+
+  const {
+    likes: { likedBy, likeCount },
+  } = post;
+
+  const isPostAlreadyLiked = likedBy.some(
+    (like) => like.username === user?.username
+  );
+
+  const likePostHandler = () => {
+    isPostAlreadyLiked
+      ? dispatch(dislikedPost({ post, token }))
+      : dispatch(likedPost({ post, token }));
   };
 
   return (
@@ -94,18 +110,31 @@ const PostCard = ({ post }) => {
           />
         ) : null}
         <HStack justifyContent={"space-between"}>
-          <Tooltip label="Like" fontSize="sm">
-            <IconButton icon={<AiOutlineHeart />}></IconButton>
-          </Tooltip>
-          <Tooltip label="Comment" fontSize="sm">
-            <IconButton icon={<MdOutlineModeComment />}></IconButton>
-          </Tooltip>
-          <Tooltip label="Bookmark" fontSize="sm">
-            <IconButton
-              icon={alreadyBookmarked ? <BsBookmarkFill /> : <BsBookmark />}
-              onClick={bookmarkPostHandler}
-            ></IconButton>
-          </Tooltip>
+          <Box display={"flex"} alignItems={"center"} gap={`${8}px`}>
+            <Tooltip label="Like" fontSize="sm">
+              <IconButton
+                icon={
+                  isPostAlreadyLiked ? <BsFillHeartFill /> : <AiOutlineHeart />
+                }
+                onClick={likePostHandler}
+              ></IconButton>
+            </Tooltip>
+            <Text>{likeCount}</Text>
+          </Box>
+          <Box display={"flex"} alignItems={"center"} gap={`${8}px`}>
+            <Tooltip label="Comment" fontSize="sm">
+              <IconButton icon={<MdOutlineModeComment />}></IconButton>
+            </Tooltip>
+            <Text>{post.comments.length}</Text>
+          </Box>
+          <Box display={"flex"} alignItems={"center"} gap={`${8}px`}>
+            <Tooltip label="Bookmark" fontSize="sm">
+              <IconButton
+                icon={alreadyBookmarked ? <BsBookmarkFill /> : <BsBookmark />}
+                onClick={bookmarkPostHandler}
+              ></IconButton>
+            </Tooltip>
+          </Box>
         </HStack>
         <CommentBox />
       </Flex>

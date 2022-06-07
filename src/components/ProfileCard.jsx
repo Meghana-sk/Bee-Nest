@@ -7,9 +7,10 @@ import {
   HStack,
   VStack,
   Button,
+  Link,
   useDisclosure,
 } from "@chakra-ui/react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { EditProfileModal } from "./modals/EditProfileModal";
@@ -25,9 +26,11 @@ const ProfileCard = ({ profileDetails = {}, numberOfPosts }) => {
     lastName,
     profilePic,
     bio,
+    website,
     following,
     followers,
   } = profileDetails;
+  const { user } = useSelector((state) => state.auth);
 
   const logoutHandler = () => {
     dispatch(logout());
@@ -39,7 +42,7 @@ const ProfileCard = ({ profileDetails = {}, numberOfPosts }) => {
     <Box p={4}>
       <Flex
         flexDirection={"column"}
-        gap={4}
+        gap={3}
         justifyContent={"center"}
         alignItems={"center"}
       >
@@ -47,10 +50,15 @@ const ProfileCard = ({ profileDetails = {}, numberOfPosts }) => {
         <Heading>
           {firstName} {lastName}
         </Heading>
-        <Text>@{username}</Text>
+        <Text fontSize={`16px`} fontWeight="600">
+          @{username}
+        </Text>
         <Text borderRadius={"md"} placeholder="bio">
           {bio}
         </Text>
+        <Link color={"blue.600"} href={website} isExternal>
+          {website}
+        </Link>
         <HStack maxW={"500px"} bg="white" borderRadius="lg">
           <VStack py="2" px="4">
             <Text fontWeight="700">{numberOfPosts}</Text>
@@ -74,7 +82,14 @@ const ProfileCard = ({ profileDetails = {}, numberOfPosts }) => {
           </Button>
         </HStack>
       </Flex>
-      {<EditProfileModal isOpen={isOpen} onOpen={onOpen} onClose={onClose} />}
+      {
+        <EditProfileModal
+          isOpen={isOpen}
+          onOpen={onOpen}
+          onClose={onClose}
+          userProfile={user}
+        />
+      }
     </Box>
   );
 };

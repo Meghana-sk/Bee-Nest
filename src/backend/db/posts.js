@@ -11,7 +11,7 @@ export const posts = [
     _id: uuid(),
     content: "Some hate humanity, but I love humanity so much",
     likes: {
-      likeCount: 0,
+      likeCount: 320,
       likedBy: [],
       dislikedBy: [],
     },
