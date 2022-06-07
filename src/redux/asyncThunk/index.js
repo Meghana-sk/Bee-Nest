@@ -5,5 +5,5 @@ export {
   bookmarkPost,
   removeBookMarkedPost,
 } from "./authThunk";
-export { getPosts, newPost } from "./postsThunk";
+export { getPosts, newPost, editPost, deletePost } from "./postsThunk";
 export { getUsers, getBookmarksForAuthUser } from "./usersThunk";
