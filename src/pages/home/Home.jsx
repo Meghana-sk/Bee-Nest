@@ -1,13 +1,17 @@
-import { Box, Tabs, TabList, Tab } from "@chakra-ui/react";
-import { useEffect } from "react";
+import { Box } from "@chakra-ui/react";
+import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getPosts } from "../../redux/asyncThunk";
-import { PostCard } from "../../components";
+import { PostCard, Filters } from "../../components";
+import { sortPostByTrending, sortPostByDate } from "../../utils";
 
 const Home = () => {
   const { posts } = useSelector((state) => state.posts);
   const { user } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
+
+  const [trending, setTrending] = useState(false);
+  const [sortBy, setSortBy] = useState("");
 
   useEffect(() => {
     dispatch(getPosts());
@@ -23,6 +27,11 @@ const Home = () => {
     ?.filter((post) => feedUsers.includes(post.username))
     .reverse();
 
+  /** Filter trending posts on user feed */
+  const trendingFilteredPosts = sortPostByTrending(feedPosts, trending);
+  /** Filter latest/older posts on user feed */
+  const dateFilteredPosts = sortPostByDate(trendingFilteredPosts, sortBy);
+
   return (
     <Box
       display="flex"
@@ -33,18 +42,14 @@ const Home = () => {
       p={4}
       bg={"gray.100"}
     >
-      <Tabs variant="soft-rounded" colorScheme="purple">
-        <TabList>
-          <Tab width={"50%"} p={4} minWidth={"300px"}>
-            Trending
-          </Tab>
-          <Tab width={"50%"} p={4} minWidth={"300px"}>
-            Filters
-          </Tab>
-        </TabList>
-      </Tabs>
-      {feedPosts.length ? (
-        feedPosts.map((post) => <PostCard key={post._id} post={post} />)
+      <Filters
+        trending={trending}
+        setTrending={setTrending}
+        sortBy={sortBy}
+        setSortBy={setSortBy}
+      />
+      {dateFilteredPosts.length ? (
+        dateFilteredPosts.map((post) => <PostCard key={post._id} post={post} />)
       ) : (
         <p>There are no posts to display</p>
       )}
