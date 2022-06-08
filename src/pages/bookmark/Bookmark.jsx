@@ -6,7 +6,12 @@ import { getBookmarksForAuthUser } from "../../redux/asyncThunk";
 
 const BookMarks = () => {
   const { token, bookmarks } = useSelector((state) => state.auth);
+  const { posts } = useSelector((state) => state.posts);
   const dispatch = useDispatch();
+
+  const bookmarkedPost = posts?.filter((post) =>
+    bookmarks.some((id) => id === post._id)
+  );
 
   useEffect(() => {
     dispatch(getBookmarksForAuthUser(token));
@@ -21,8 +26,8 @@ const BookMarks = () => {
       p={4}
       bg={"gray.100"}
     >
-      {bookmarks.length ? (
-        bookmarks.map((post) => <PostCard post={post} key={post._id} />)
+      {bookmarkedPost.length ? (
+        bookmarkedPost?.map((post) => <PostCard post={post} key={post._id} />)
       ) : (
         <Text>No bookmarked posts available</Text>
       )}

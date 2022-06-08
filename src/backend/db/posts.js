@@ -26,7 +26,7 @@ export const posts = [
       {
         _id: uuid(),
         username: "shubhamsoni",
-        text: "Interesting",
+        commentData: "Interesting",
         votes: {
           upvotedBy: [],
           downvotedBy: [],
@@ -35,7 +35,7 @@ export const posts = [
       {
         _id: uuid(),
         username: "sohamshah",
-        text: "Wow!",
+        commentData: "Wow!",
         votes: {
           upvotedBy: [],
           downvotedBy: [],
@@ -62,7 +62,7 @@ export const posts = [
       {
         _id: uuid(),
         username: "shubhamsoni",
-        text: "Interesting",
+        commentData: "Interesting",
         votes: {
           upvotedBy: [],
           downvotedBy: [],
@@ -71,7 +71,7 @@ export const posts = [
       {
         _id: uuid(),
         username: "sohamshah",
-        text: "Wow!",
+        commentData: "Wow!",
         votes: {
           upvotedBy: [],
           downvotedBy: [],
@@ -100,7 +100,8 @@ export const posts = [
       {
         _id: uuid(),
         username: "_Wisdom_Academy",
-        text: "Writing can help you quiet the voice in your head that is too loud for you to hear.",
+        commentData:
+          "Writing can help you quiet the voice in your head that is too loud for you to hear.",
         votes: {
           upvotedBy: [],
           downvotedBy: [],
@@ -109,7 +110,8 @@ export const posts = [
       {
         _id: uuid(),
         username: "omarakhaddaj",
-        text: "In the end, your life will be a reflection of who you really are rather than who you want to be.",
+        commentData:
+          "In the end, your life will be a reflection of who you really are rather than who you want to be.",
         votes: {
           upvotedBy: [],
           downvotedBy: [],

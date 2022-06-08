@@ -19,7 +19,7 @@ import { BsBookmarkFill, BsFillHeartFill } from "react-icons/bs";
 import { MdOutlineModeComment } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
-import { CommentBox, PostModal } from "../components";
+import { CommentCard, CommentBox, PostModal } from "../components";
 import {
   bookmarkPost,
   removeBookMarkedPost,
@@ -34,13 +34,13 @@ const PostCard = ({ post }) => {
   const { token, bookmarks, user } = useSelector((state) => state.auth);
 
   const alreadyBookmarked = bookmarks.some(
-    (bookmarkedPost) => bookmarkedPost._id === post._id
+    (bookmarkedPost) => bookmarkedPost === post._id
   );
 
-  const bookmarkPostHandler = () => {
+  const bookmarkPostHandler = async () => {
     if (alreadyBookmarked)
-      dispatch(removeBookMarkedPost({ postId: post._id, token }));
-    else dispatch(bookmarkPost({ postId: post._id, token }));
+      await dispatch(removeBookMarkedPost({ postId: post._id, token }));
+    else await dispatch(bookmarkPost({ postId: post._id, token }));
   };
 
   const isCurrentLoggedInUsersPost = user.username === post.username;
@@ -60,17 +60,20 @@ const PostCard = ({ post }) => {
 
   const {
     likes: { likedBy, likeCount },
+    comments,
   } = post;
 
   const isPostAlreadyLiked = likedBy.some(
     (like) => like.username === user?.username
   );
 
-  const likePostHandler = () => {
+  const likePostHandler = async () => {
     isPostAlreadyLiked
-      ? dispatch(dislikedPost({ post, token }))
-      : dispatch(likedPost({ post, token }));
+      ? await dispatch(dislikedPost({ post, token }))
+      : await dispatch(likedPost({ post, token }));
   };
+
+  const latestCommentsOnTopArray = [...comments].reverse();
 
   return (
     <Box backgroundColor={"gray.50"} width={"50%"} p={4} minWidth={"300px"}>
@@ -136,7 +139,12 @@ const PostCard = ({ post }) => {
             </Tooltip>
           </Box>
         </HStack>
-        <CommentBox />
+        <CommentBox postId={post._id} />
+        {latestCommentsOnTopArray.length
+          ? latestCommentsOnTopArray.map((comment) => (
+              <CommentCard comment={comment} postId={post._id} />
+            ))
+          : null}
       </Flex>
     </Box>
   );

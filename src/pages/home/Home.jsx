@@ -20,7 +20,7 @@ const Home = () => {
   feedUsers = [...feedUsers, user.username];
 
   const feedPosts = posts
-    .filter((post) => feedUsers.includes(post.username))
+    ?.filter((post) => feedUsers.includes(post.username))
     .reverse();
 
   return (

@@ -69,7 +69,7 @@ const authSlice = createSlice({
       state.bookmarks = action.payload.data.bookmarks;
       state.isloading = false;
     },
-    [bookmarkPost.rejected]: (state, action) => {
+    [bookmarkPost.rejected]: (state) => {
       state.isloading = false;
     },
     [removeBookMarkedPost.pending]: (state) => {
@@ -79,7 +79,7 @@ const authSlice = createSlice({
       state.isloading = false;
       state.bookmarks = action.payload.data.bookmarks;
     },
-    [removeBookMarkedPost.rejected]: (state, action) => {
+    [removeBookMarkedPost.rejected]: (state) => {
       state.isloading = false;
     },
   },
