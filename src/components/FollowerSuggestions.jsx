@@ -1,7 +1,17 @@
 import { Box, VStack, Text } from "@chakra-ui/react";
+import { useSelector, useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { getUsers } from "../redux/asyncThunk";
 import { FollowerSuggestionsProfile } from "../components";
 
 const FollowerSuggestions = () => {
+  const { user } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getUsers());
+  }, [dispatch]);
+
   return (
     <Box
       position={"fixed"}
@@ -15,7 +25,7 @@ const FollowerSuggestions = () => {
     >
       <Text fontWeight={"bold"}>Suggestions for you</Text>
       <VStack m={1}>
-        <FollowerSuggestionsProfile />
+        <FollowerSuggestionsProfile user={user} />
         <FollowerSuggestionsProfile />
         <FollowerSuggestionsProfile />
       </VStack>
