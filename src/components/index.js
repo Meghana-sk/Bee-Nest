@@ -7,3 +7,4 @@ export { FollowerSuggestionsProfile } from "./FollowerSuggestionProfile";
 export { ProfileCard } from "./ProfileCard";
 export { EditProfileModal } from "./modals/EditProfileModal";
 export { PostModal } from "./modals/PostModal";
+export { EditCommentModal } from "./modals/EditCommentModal";

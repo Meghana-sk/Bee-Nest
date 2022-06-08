@@ -123,7 +123,6 @@ const addComment = createAsyncThunk(
         { commentData },
         { headers: { authorization: token } }
       );
-      console.log("comment add", response);
       const data = { data: response.data, status: response.status };
       return data;
     } catch (error) {
