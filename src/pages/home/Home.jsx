@@ -18,14 +18,11 @@ const Home = () => {
   }, [dispatch]);
 
   /** The feed is filled with users the loggedin user is following */
-  let feedUsers = user.following
-    ? user.following.map((user) => user.username)
-    : null;
-  feedUsers = [...feedUsers, user.username];
-
-  const feedPosts = posts
-    ?.filter((post) => feedUsers.includes(post.username))
-    .reverse();
+  const feedPosts = posts?.filter(
+    (post) =>
+      user.username === post.username ||
+      user.following.some((following) => following.username === post.username)
+  );
 
   /** Filter trending posts on user feed */
   const trendingFilteredPosts = sortPostByTrending(feedPosts, trending);

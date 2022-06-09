@@ -63,6 +63,7 @@ const ProfileCard = ({ profileDetails = {}, numberOfPosts }) => {
         gap={3}
         justifyContent={"center"}
         alignItems={"center"}
+        maxW={"500px"}
       >
         <Avatar size={"xl"} src={profilePic}></Avatar>
         <Heading>
@@ -71,16 +72,19 @@ const ProfileCard = ({ profileDetails = {}, numberOfPosts }) => {
         <Text fontSize={`16px`} fontWeight="600">
           @{username}
         </Text>
-        {user.following.some(
+        {!isCurrentLoggedInUser &&
+        user.following.some(
           (userFollow) => userFollow.username === username
         ) ? (
           <Button colorScheme="purple" onClick={unfollowUserHandler}>
             Unfollow
           </Button>
         ) : (
-          <Button colorScheme="purple" onClick={followUserHandler}>
-            Follow
-          </Button>
+          !isCurrentLoggedInUser && (
+            <Button colorScheme="purple" onClick={followUserHandler}>
+              Follow
+            </Button>
+          )
         )}
         <Text borderRadius={"md"} placeholder="bio">
           {bio}

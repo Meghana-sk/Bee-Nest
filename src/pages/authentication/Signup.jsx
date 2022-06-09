@@ -17,6 +17,7 @@ import {
   InputRightElement,
   HStack,
   FormLabel,
+  Text,
 } from "@chakra-ui/react";
 import { FaUserAlt, FaLock } from "react-icons/fa";
 
@@ -210,10 +211,12 @@ const Signup = () => {
               </FormControl>
             </Stack>
           </Box>
-          <Box>
+          <Box display="flex" gap={1} alignItems={"center"}>
             Already have an account?
-            <Link color="purple.500" to="/login" ml={1}>
-              Login
+            <Link to="/login" ml={1}>
+              <Text color="purple.600" fontWeight={600}>
+                Login
+              </Text>
             </Link>
           </Box>
         </Flex>
