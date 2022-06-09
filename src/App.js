@@ -10,7 +10,7 @@ import {
   Explore,
   BookMarks,
 } from "./pages";
-import { Navbar, FollowerSuggestions } from "./components";
+import { Navbar } from "./components";
 import { RequiresAuth } from "./routes";
 
 function App() {
@@ -61,9 +61,6 @@ function App() {
           }
         />
       </Routes>
-      {/* {location.pathname !== "/" &&
-        location.pathname !== "/login" &&
-        location.pathname !== "/signup" && } */}
     </div>
   );
 }

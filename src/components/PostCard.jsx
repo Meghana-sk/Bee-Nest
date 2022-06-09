@@ -77,6 +77,18 @@ const PostCard = ({ post }) => {
 
   const latestCommentsOnTopArray = [...comments].reverse();
 
+  // GET DATE
+  const getDate = (createdAt) => {
+    const date = new Date(createdAt).toLocaleString("en-In", {
+      day: "2-digit",
+    });
+    const month = new Date(createdAt).toLocaleString("en-In", {
+      month: "short",
+    });
+    const year = new Date(createdAt).getFullYear();
+    return `${date} ${month} ${year}`;
+  };
+
   return (
     <Box backgroundColor={"gray.50"} width={"50%"} p={4} minWidth={"300px"}>
       <Flex flexDirection={"column"} justifyContent={"center"} gap={4}>
@@ -92,6 +104,7 @@ const PostCard = ({ post }) => {
               {post?.firstName} {post?.lastName}
             </Text>
             <Text>@{post?.username}</Text>
+            <Text>{getDate(post?.createdAt)}</Text>
           </Box>
           {isCurrentLoggedInUsersPost && (
             <Menu>

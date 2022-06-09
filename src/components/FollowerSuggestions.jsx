@@ -1,6 +1,6 @@
 import { Box, Flex, Text } from "@chakra-ui/react";
 import { useSelector, useDispatch } from "react-redux";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { getUsers } from "../redux/asyncThunk";
 import { FollowerSuggestionsProfile } from "../components";
 
@@ -9,10 +9,11 @@ const FollowerSuggestions = () => {
   const { users } = useSelector((state) => state.users);
   const dispatch = useDispatch();
 
-  const otherUsers = users?.filter((item) => item.username !== user?.username);
-
-  const usersNotFollowedByLoggedInUser = otherUsers.filter((item) =>
-    item.followers.every((follower) => follower.username !== user?.username)
+  /** Users list whom current logged in user does not follow */
+  const usersNotFollowedByLoggedInUser = users.filter(
+    (item) =>
+      item.username !== user.username &&
+      !user.following.some((user) => user.username === item.username)
   );
 
   useEffect(() => {

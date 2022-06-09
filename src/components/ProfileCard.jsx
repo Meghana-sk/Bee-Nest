@@ -36,8 +36,6 @@ const ProfileCard = ({ profileDetails = {}, numberOfPosts }) => {
 
   const isCurrentLoggedInUser = username === user.username;
 
-  const isCurrentLoggedInFollowsOtherUser = false;
-
   const logoutHandler = () => {
     dispatch(logout());
     navigate("/");

@@ -20,7 +20,7 @@ export const posts = [
     lastName: "Musk",
     profilePic:
       "https://res.cloudinary.com/meghanaskcloud/image/upload/v1654444111/Social%20media/profile%20pics/elonmusk_Profile_lro5gn.jpg",
-    createdAt: formatDate(),
+    createdAt: new Date("04/05/2020"),
     updatedAt: formatDate(),
     comments: [
       {
@@ -78,7 +78,7 @@ export const posts = [
         },
       },
     ],
-    createdAt: formatDate(),
+    createdAt: new Date("03/20/2022"),
     updatedAt: formatDate(),
   },
   {
@@ -118,7 +118,7 @@ export const posts = [
         },
       },
     ],
-    createdAt: formatDate(),
+    createdAt: new Date("06/15/2019"),
     updatedAt: formatDate(),
   },
   {
@@ -196,7 +196,7 @@ export const posts = [
     profilePic:
       "https://res.cloudinary.com/abhijeetscloud/image/upload/v1653718583/userSix_hjf46y.jpg",
     comments: [],
-    createdAt: formatDate(),
+    createdAt: new Date("01/01/2020"),
     updatedAt: formatDate(),
   },
   {
@@ -246,7 +246,7 @@ export const posts = [
     profilePic:
       "https://res.cloudinary.com/meghanaskcloud/image/upload/v1654450830/Social%20media/profile%20pics/oppo-HA5rQ_XfBD0-unsplash_bqovmv.jpg",
     comments: [],
-    createdAt: formatDate(),
+    createdAt: new Date("03/20/2008"),
     updatedAt: formatDate(),
   },
   {
@@ -288,7 +288,7 @@ export const posts = [
     profilePic:
       "https://res.cloudinary.com/abhijeetscloud/image/upload/v1653718600/userThree_qat0za.jpg",
     comments: [],
-    createdAt: formatDate(),
+    createdAt: new Date("04/09/2015"),
     updatedAt: formatDate(),
   },
   {
@@ -347,7 +347,7 @@ export const posts = [
     profilePic:
       "https://res.cloudinary.com/meghanaskcloud/image/upload/v1654450830/Social%20media/profile%20pics/oppo-HA5rQ_XfBD0-unsplash_bqovmv.jpg",
     comments: [],
-    createdAt: formatDate(),
+    createdAt: new Date("04/16/2021"),
     updatedAt: formatDate(),
   },
   {
@@ -389,7 +389,7 @@ export const posts = [
     profilePic:
       "https://res.cloudinary.com/abhijeetscloud/image/upload/v1653718614/userFive_dp8dgl.jpg",
     comments: [],
-    createdAt: formatDate(),
+    createdAt: new Date("08/08/2018"),
     updatedAt: formatDate(),
   },
   {
@@ -424,7 +424,7 @@ export const posts = [
     profilePic:
       "https://res.cloudinary.com/abhijeetscloud/image/upload/v1653718283/profile_y24uvb.jpg",
     comments: [],
-    createdAt: formatDate(),
+    createdAt: new Date("04/28/2022"),
     updatedAt: formatDate(),
   },
   {
@@ -484,7 +484,7 @@ export const posts = [
     profilePic:
       "https://res.cloudinary.com/abhijeetscloud/image/upload/v1653718578/userFour_zrkbid.jpg",
     comments: [],
-    createdAt: formatDate(),
+    createdAt: new Date("03/20/2021"),
     updatedAt: formatDate(),
   },
 ];

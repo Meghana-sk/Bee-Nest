@@ -1,37 +1,23 @@
 import { Box, Text } from "@chakra-ui/react";
 import { ProfileCard, PostCard, FollowerSuggestions } from "../../components";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getPosts } from "../../redux/asyncThunk";
 import { getUser, getUserPosts } from "../../services";
 
 const Profile = () => {
-  const dispatch = useDispatch();
-
   const { posts } = useSelector((state) => state.posts);
-  const { user } = useSelector((state) => state.auth);
   const { users } = useSelector((state) => state.users);
 
   const { username } = useParams();
 
-  // useEffect(() => {
-  //   dispatch(getPosts());
-  // }, [dispatch]);
-
   const [userProfile, setUserProfile] = useState("");
   const [userPosts, setUserPosts] = useState("");
-
-  // const currentLoggedInUserPosts = [...posts].filter(
-  //   (post) => user.username === post.username
-  // );
 
   useEffect(() => {
     getUser(setUserProfile, username);
     getUserPosts(setUserPosts, username);
   }, [username, users, posts]);
-
-  console.log("user profile", userProfile);
 
   return (
     <Box

@@ -27,12 +27,15 @@ const FollowerSuggestionsProfile = ({
       alignItems={"center"}
       flexGrow="1"
       gap={2}
-      cursor="pointer"
       justifyContent={"flex-start"}
-      onClick={() => navigate(`/profile/${username}`)}
     >
-      <Avatar size="sm" src={profilePic} />
-      <Box>
+      <Avatar
+        size="sm"
+        src={profilePic}
+        cursor="pointer"
+        onClick={() => navigate(`/profile/${username}`)}
+      />
+      <Box cursor="pointer" onClick={() => navigate(`/profile/${username}`)}>
         <Text fontWeight={"600"}>
           {firstName} {lastName}
         </Text>
