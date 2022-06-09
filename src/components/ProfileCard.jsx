@@ -14,13 +14,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { EditProfileModal } from "./modals/EditProfileModal";
-import { logout } from "../redux/slices";
+import { logout, updateUser } from "../redux/slices";
+import { followUser, unfollowUser } from "../redux/asyncThunk";
 
 const ProfileCard = ({ profileDetails = {}, numberOfPosts }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const {
+    _id,
     username,
     firstName,
     lastName,
@@ -30,12 +32,30 @@ const ProfileCard = ({ profileDetails = {}, numberOfPosts }) => {
     following,
     followers,
   } = profileDetails;
-  const { user } = useSelector((state) => state.auth);
+  const { user, token } = useSelector((state) => state.auth);
+
+  const isCurrentLoggedInUser = username === user.username;
+
+  const isCurrentLoggedInFollowsOtherUser = false;
 
   const logoutHandler = () => {
     dispatch(logout());
     navigate("/");
     toast.success("Logged Out Successfully!!");
+  };
+
+  const followUserHandler = async () => {
+    const response = await dispatch(followUser({ userId: _id, token }));
+    if (response.payload.status === 200) {
+      dispatch(updateUser(response.payload.data?.user));
+    } else {
+      toast.error(response.payload.data.errors[0]);
+    }
+  };
+
+  const unfollowUserHandler = async () => {
+    const response = await dispatch(unfollowUser({ userId: _id, token }));
+    dispatch(updateUser(response?.payload.data.user));
   };
 
   return (
@@ -53,6 +73,17 @@ const ProfileCard = ({ profileDetails = {}, numberOfPosts }) => {
         <Text fontSize={`16px`} fontWeight="600">
           @{username}
         </Text>
+        {user.following.some(
+          (userFollow) => userFollow.username === username
+        ) ? (
+          <Button colorScheme="purple" onClick={unfollowUserHandler}>
+            Unfollow
+          </Button>
+        ) : (
+          <Button colorScheme="purple" onClick={followUserHandler}>
+            Follow
+          </Button>
+        )}
         <Text borderRadius={"md"} placeholder="bio">
           {bio}
         </Text>
@@ -65,22 +96,24 @@ const ProfileCard = ({ profileDetails = {}, numberOfPosts }) => {
             <Text>Posts</Text>
           </VStack>
           <VStack py="2" px="4">
-            <Text fontWeight="700">{followers.length}</Text>
+            <Text fontWeight="700">{followers?.length}</Text>
             <Text>Followers</Text>
           </VStack>
           <VStack py="2" px="4">
-            <Text fontWeight="700">{following.length}</Text>
+            <Text fontWeight="700">{following?.length}</Text>
             <Text>Following</Text>
           </VStack>
         </HStack>
-        <HStack>
-          <Button colorScheme="purple" onClick={onOpen}>
-            Edit profile
-          </Button>
-          <Button colorScheme="red" onClick={logoutHandler}>
-            Logout
-          </Button>
-        </HStack>
+        {isCurrentLoggedInUser && (
+          <HStack>
+            <Button colorScheme="purple" onClick={onOpen}>
+              Edit profile
+            </Button>
+            <Button colorScheme="red" onClick={logoutHandler}>
+              Logout
+            </Button>
+          </HStack>
+        )}
       </Flex>
       {
         <EditProfileModal

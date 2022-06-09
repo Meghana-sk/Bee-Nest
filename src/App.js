@@ -61,9 +61,9 @@ function App() {
           }
         />
       </Routes>
-      {location.pathname !== "/" &&
+      {/* {location.pathname !== "/" &&
         location.pathname !== "/login" &&
-        location.pathname !== "/signup" && <FollowerSuggestions />}
+        location.pathname !== "/signup" && } */}
     </div>
   );
 }

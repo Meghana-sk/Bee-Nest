@@ -1,5 +1,5 @@
 import { Box, Text } from "@chakra-ui/react";
-import { ProfileCard, PostCard } from "../../components";
+import { ProfileCard, PostCard, FollowerSuggestions } from "../../components";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
@@ -43,6 +43,7 @@ const Profile = () => {
       p={4}
       gap={3}
     >
+      <FollowerSuggestions />
       <ProfileCard
         profileDetails={userProfile}
         numberOfPosts={userPosts.length}

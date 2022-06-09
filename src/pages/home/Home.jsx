@@ -2,7 +2,7 @@ import { Box, Tabs, TabList, Tab } from "@chakra-ui/react";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getPosts } from "../../redux/asyncThunk";
-import { PostCard } from "../../components";
+import { PostCard, FollowerSuggestions } from "../../components";
 
 const Home = () => {
   const { posts } = useSelector((state) => state.posts);
@@ -33,6 +33,7 @@ const Home = () => {
       p={4}
       bg={"gray.100"}
     >
+      <FollowerSuggestions />
       <Tabs variant="soft-rounded" colorScheme="purple">
         <TabList>
           <Tab width={"50%"} p={4} minWidth={"300px"}>
