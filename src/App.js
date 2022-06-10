@@ -9,6 +9,7 @@ import {
   LandingPage,
   Explore,
   BookMarks,
+  Error404,
 } from "./pages";
 import { Navbar } from "./components";
 import { RequiresAuth } from "./routes";
@@ -60,6 +61,7 @@ function App() {
             </RequiresAuth>
           }
         />
+        <Route path="*" element={<Error404 />} />
       </Routes>
     </div>
   );
