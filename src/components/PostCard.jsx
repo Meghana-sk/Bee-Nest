@@ -19,6 +19,7 @@ import { BsBookmarkFill, BsFillHeartFill } from "react-icons/bs";
 import { MdOutlineModeComment } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 import { CommentCard, CommentBox, PostModal } from "../components";
 import {
   bookmarkPost,
@@ -32,6 +33,7 @@ const PostCard = ({ post }) => {
   const dispatch = useDispatch();
   const { onOpen, isOpen, onClose } = useDisclosure();
   const { token, bookmarks, user } = useSelector((state) => state.auth);
+  const navigate = useNavigate();
 
   const alreadyBookmarked = bookmarks.some(
     (bookmarkedPost) => bookmarkedPost === post._id
@@ -90,13 +92,20 @@ const PostCard = ({ post }) => {
   return (
     <Box backgroundColor={"gray.50"} width={"50%"} p={4} minWidth={"300px"}>
       <Flex flexDirection={"column"} justifyContent={"center"} gap={4}>
-        <HStack>
-          <Avatar size="sm" src={post?.profilePic}></Avatar>
-          <Text fontWeight={"bold"}>
-            {post?.firstName} {post?.lastName}
-          </Text>
-          <Text>@{post?.username}</Text>
-          <Text>{getDate(post?.createdAt)}</Text>
+        <HStack justifyContent="space-between">
+          <Box
+            display="flex"
+            gap={1.5}
+            cursor="pointer"
+            onClick={() => navigate(`/profile/${post.username}`)}
+          >
+            <Avatar size="sm" src={post?.profilePic}></Avatar>
+            <Text fontWeight={"bold"}>
+              {post?.firstName} {post?.lastName}
+            </Text>
+            <Text>@{post?.username}</Text>
+            <Text>{getDate(post?.createdAt)}</Text>
+          </Box>
           {isCurrentLoggedInUsersPost && (
             <Menu>
               <MenuButton as={Button} p={0.5}>

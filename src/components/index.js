@@ -9,3 +9,4 @@ export { EditProfileModal } from "./modals/EditProfileModal";
 export { PostModal } from "./modals/PostModal";
 export { EditCommentModal } from "./modals/EditCommentModal";
 export { Filters } from "./Filters";
+export { FollowersCountModal } from "./modals/FollowersCountModal";

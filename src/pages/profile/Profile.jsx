@@ -1,22 +1,24 @@
-import { Box, Text } from "@chakra-ui/react";
-import { ProfileCard, PostCard } from "../../components";
-import { useSelector, useDispatch } from "react-redux";
-import { useEffect } from "react";
-import { getPosts } from "../../redux/asyncThunk";
+import { Box, Text, useMediaQuery } from "@chakra-ui/react";
+import { ProfileCard, PostCard, FollowerSuggestions } from "../../components";
+import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { getUser, getUserPosts } from "../../services";
 
 const Profile = () => {
-  const dispatch = useDispatch();
-
   const { posts } = useSelector((state) => state.posts);
-  const { user } = useSelector((state) => state.auth);
+  const { users } = useSelector((state) => state.users);
+  const [isLargerThan952] = useMediaQuery("(min-width: 952px)");
+
+  const { username } = useParams();
+
+  const [userProfile, setUserProfile] = useState("");
+  const [userPosts, setUserPosts] = useState("");
 
   useEffect(() => {
-    dispatch(getPosts());
-  }, [dispatch]);
-
-  const currentLoggedInUserPosts = [...posts].filter(
-    (post) => user.username === post.username
-  );
+    getUser(setUserProfile, username);
+    getUserPosts(setUserPosts, username);
+  }, [username, users, posts]);
 
   return (
     <Box
@@ -28,15 +30,17 @@ const Profile = () => {
       p={4}
       gap={3}
     >
+      {isLargerThan952 ? <FollowerSuggestions /> : null}
       <ProfileCard
-        profileDetails={user}
-        numberOfPosts={currentLoggedInUserPosts.length}
+        profileDetails={userProfile}
+        setProfile={setUserProfile}
+        numberOfPosts={userPosts.length}
       />
       <Text fontWeight={800} fontSize={"20px"}>
         Your posts
       </Text>
-      {currentLoggedInUserPosts.length > 0 ? (
-        [...currentLoggedInUserPosts]
+      {userPosts.length > 0 ? (
+        [...userPosts]
           ?.reverse()
           .map((post) => <PostCard key={post._id} post={post} />)
       ) : (

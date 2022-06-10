@@ -9,8 +9,9 @@ import {
   LandingPage,
   Explore,
   BookMarks,
+  Error404,
 } from "./pages";
-import { Navbar, FollowerSuggestions } from "./components";
+import { Navbar } from "./components";
 import { RequiresAuth } from "./routes";
 
 function App() {
@@ -60,10 +61,8 @@ function App() {
             </RequiresAuth>
           }
         />
+        <Route path="*" element={<Error404 />} />
       </Routes>
-      {location.pathname !== "/" &&
-        location.pathname !== "/login" &&
-        location.pathname !== "/signup" && <FollowerSuggestions />}
     </div>
   );
 }

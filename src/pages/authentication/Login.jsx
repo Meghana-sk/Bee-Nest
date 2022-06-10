@@ -14,6 +14,7 @@ import {
   InputGroup,
   InputLeftElement,
   InputRightElement,
+  Text,
 } from "@chakra-ui/react";
 import { FaUserAlt, FaLock } from "react-icons/fa";
 import { login } from "../../redux/asyncThunk";
@@ -152,10 +153,12 @@ const Login = ({ heading = "Login" }) => {
               </FormControl>
             </Stack>
           </Box>
-          <Box>
+          <Box display="flex" gap={1} alignItems="center">
             New to us?
-            <Link color="purple.500" to="/signup">
-              Sign Up
+            <Link to="/signup">
+              <Text color="purple.500" fontWeight={600}>
+                Sign up
+              </Text>
             </Link>
           </Box>
         </Flex>

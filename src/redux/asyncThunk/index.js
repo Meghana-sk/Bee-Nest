@@ -16,4 +16,9 @@ export {
   editComment,
   deleteComment,
 } from "./postsThunk";
-export { getUsers, getBookmarksForAuthUser } from "./usersThunk";
+export {
+  getUsers,
+  getBookmarksForAuthUser,
+  followUser,
+  unfollowUser,
+} from "./usersThunk";

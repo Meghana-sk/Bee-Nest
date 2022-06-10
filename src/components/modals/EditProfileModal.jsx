@@ -22,7 +22,7 @@ import { toast } from "react-toastify";
 import { editUser } from "../../redux/asyncThunk";
 import { updateUser } from "../../redux/slices";
 
-const EditProfileModal = ({ isOpen, onClose, userProfile }) => {
+const EditProfileModal = ({ isOpen, onClose, userProfile, setProfile }) => {
   const { token } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const reader = new FileReader();
@@ -60,7 +60,8 @@ const EditProfileModal = ({ isOpen, onClose, userProfile }) => {
     try {
       const response = await dispatch(editUser({ userData, token }));
       if (response.payload.status === 201) {
-        setUserData(response.payload.data.user);
+        setUserData(() => response?.payload.data.user);
+        setProfile(response?.payload.data.user);
         dispatch(updateUser(response?.payload.data.user));
         toast.info("Profile updated successfully!!");
       } else {

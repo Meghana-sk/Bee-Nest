@@ -1,14 +1,15 @@
-import { Box } from "@chakra-ui/react";
+import { Box, useMediaQuery } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getPosts } from "../../redux/asyncThunk";
-import { PostCard, Filters } from "../../components";
+import { PostCard, Filters, FollowerSuggestions } from "../../components";
 import { sortPostByTrending, sortPostByDate } from "../../utils";
 
 const Home = () => {
   const { posts } = useSelector((state) => state.posts);
   const { user } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
+  const [isLargerThan1252] = useMediaQuery("(min-width: 1252px)");
 
   const [trending, setTrending] = useState(false);
   const [sortBy, setSortBy] = useState("");
@@ -18,14 +19,11 @@ const Home = () => {
   }, [dispatch]);
 
   /** The feed is filled with users the loggedin user is following */
-  let feedUsers = user.following
-    ? user.following.map((user) => user.username)
-    : null;
-  feedUsers = [...feedUsers, user.username];
-
-  const feedPosts = posts
-    ?.filter((post) => feedUsers.includes(post.username))
-    .reverse();
+  const feedPosts = posts?.filter(
+    (post) =>
+      user.username === post.username ||
+      user.following.some((following) => following.username === post.username)
+  );
 
   /** Filter trending posts on user feed */
   const trendingFilteredPosts = sortPostByTrending(feedPosts, trending);
@@ -42,6 +40,7 @@ const Home = () => {
       p={4}
       bg={"gray.100"}
     >
+      {isLargerThan1252 ? <FollowerSuggestions /> : null}
       <Filters
         trending={trending}
         setTrending={setTrending}

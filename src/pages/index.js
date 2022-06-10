@@ -5,3 +5,4 @@ export { Home } from "./home/Home";
 export { LandingPage } from "./landing-page/LandingPage";
 export { Explore } from "./explore/Explore";
 export { BookMarks } from "./bookmark/Bookmark";
+export { Error404 } from "./error404/Error404";
