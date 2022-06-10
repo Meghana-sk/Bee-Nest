@@ -12,13 +12,21 @@ import {
 } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 import { toast } from "react-toastify";
 import { EditProfileModal } from "./modals/EditProfileModal";
 import { logout, updateUser } from "../redux/slices";
 import { followUser, unfollowUser } from "../redux/asyncThunk";
+import { FollowersCountModal } from "../components";
 
-const ProfileCard = ({ profileDetails = {}, numberOfPosts }) => {
+const ProfileCard = ({ profileDetails = {}, numberOfPosts, setProfile }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const [followModal, setFollowModal] = useState(null);
+  const {
+    isOpen: isOpenFollower,
+    onOpen: onOpenFollower,
+    onClose: onCloseFollower,
+  } = useDisclosure();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const {
@@ -97,11 +105,27 @@ const ProfileCard = ({ profileDetails = {}, numberOfPosts }) => {
             <Text fontWeight="700">{numberOfPosts}</Text>
             <Text>Posts</Text>
           </VStack>
-          <VStack py="2" px="4">
+          <VStack
+            py="2"
+            px="4"
+            cursor={"pointer"}
+            onClick={() => {
+              setFollowModal("followers");
+              onOpenFollower();
+            }}
+          >
             <Text fontWeight="700">{followers?.length}</Text>
             <Text>Followers</Text>
           </VStack>
-          <VStack py="2" px="4">
+          <VStack
+            py="2"
+            px="4"
+            cursor={"pointer"}
+            onClick={() => {
+              setFollowModal("following");
+              onOpenFollower();
+            }}
+          >
             <Text fontWeight="700">{following?.length}</Text>
             <Text>Following</Text>
           </VStack>
@@ -123,6 +147,15 @@ const ProfileCard = ({ profileDetails = {}, numberOfPosts }) => {
           onOpen={onOpen}
           onClose={onClose}
           userProfile={user}
+          setProfile={setProfile}
+        />
+      }
+      {
+        <FollowersCountModal
+          isOpenFollower={isOpenFollower}
+          onCloseFollower={onCloseFollower}
+          followModal={followModal}
+          userProfile={followModal === "followers" ? followers : following}
         />
       }
     </Box>

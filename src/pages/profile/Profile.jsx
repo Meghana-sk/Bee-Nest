@@ -32,6 +32,7 @@ const Profile = () => {
       <FollowerSuggestions />
       <ProfileCard
         profileDetails={userProfile}
+        setProfile={setUserProfile}
         numberOfPosts={userPosts.length}
       />
       <Text fontWeight={800} fontSize={"20px"}>
