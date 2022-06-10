@@ -9,6 +9,8 @@ BEE Nest is a platform to share your thoughts openly to the world.
 
 --
 
+## [Check Live link](https://bee-nest.netlify.app/)
+
 ## Key Features
 
 - Auth Management
@@ -78,3 +80,9 @@ BEE Nest is a platform to share your thoughts openly to the world.
 7. Open a Pull Request
 
 ---
+
+## Desktop Version
+
+<p align="center">
+  <img width="100%" src="./src/assets/Bee-Nest-SocialMedia.gif" alt="NovSoc"/>
+</p>
