@@ -1,4 +1,4 @@
-import { Box, Text } from "@chakra-ui/react";
+import { Box, Text, useMediaQuery } from "@chakra-ui/react";
 import { ProfileCard, PostCard, FollowerSuggestions } from "../../components";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
@@ -8,6 +8,7 @@ import { getUser, getUserPosts } from "../../services";
 const Profile = () => {
   const { posts } = useSelector((state) => state.posts);
   const { users } = useSelector((state) => state.users);
+  const [isLargerThan952] = useMediaQuery("(min-width: 952px)");
 
   const { username } = useParams();
 
@@ -29,7 +30,7 @@ const Profile = () => {
       p={4}
       gap={3}
     >
-      <FollowerSuggestions />
+      {isLargerThan952 ? <FollowerSuggestions /> : null}
       <ProfileCard
         profileDetails={userProfile}
         setProfile={setUserProfile}

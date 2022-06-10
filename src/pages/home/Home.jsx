@@ -1,4 +1,4 @@
-import { Box } from "@chakra-ui/react";
+import { Box, useMediaQuery } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getPosts } from "../../redux/asyncThunk";
@@ -9,6 +9,7 @@ const Home = () => {
   const { posts } = useSelector((state) => state.posts);
   const { user } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
+  const [isLargerThan1252] = useMediaQuery("(min-width: 1252px)");
 
   const [trending, setTrending] = useState(false);
   const [sortBy, setSortBy] = useState("");
@@ -39,7 +40,7 @@ const Home = () => {
       p={4}
       bg={"gray.100"}
     >
-      <FollowerSuggestions />
+      {isLargerThan1252 ? <FollowerSuggestions /> : null}
       <Filters
         trending={trending}
         setTrending={setTrending}

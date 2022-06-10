@@ -1,14 +1,16 @@
-import { Flex, Image, Box } from "@chakra-ui/react";
+import { Flex, Image, Box, useMediaQuery } from "@chakra-ui/react";
 import { Login } from "../../pages";
 
 const LandingPage = () => {
+  const [isLargerThan1000] = useMediaQuery("(min-width: 1000px)");
+
   return (
     <Flex
       justifyContent={"center"}
       alignItems={"center"}
       backgroundColor={"gray.200"}
-      flexWrap={"wrap"}
       gap={4}
+      flexWrap={isLargerThan1000 ? null : "wrap-reverse"}
     >
       <Box
         boxSize="md"

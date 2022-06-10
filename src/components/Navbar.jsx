@@ -7,6 +7,7 @@ import {
   IconButton,
   Avatar,
   useDisclosure,
+  useMediaQuery,
 } from "@chakra-ui/react";
 import {
   AiOutlineHome,
@@ -20,6 +21,7 @@ import { PostModal } from "./modals/PostModal";
 const Navbar = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { user } = useSelector((state) => state.auth);
+  const [isLargerThan491] = useMediaQuery("(min-width: 491px)");
   return (
     <Box
       bg="white"
@@ -34,15 +36,17 @@ const Navbar = () => {
           <Heading>BEE Nest</Heading>
         </Link>
         <div display={"flex"} alignItems={"center"}>
-          <Link to={"/home"}>
-            <Tooltip label="Home">
-              <IconButton
-                borderRadius="full"
-                icon={<AiOutlineHome />}
-                ml={4}
-              ></IconButton>
-            </Tooltip>
-          </Link>
+          {isLargerThan491 ? (
+            <Link to={"/home"}>
+              <Tooltip label="Home">
+                <IconButton
+                  borderRadius="full"
+                  icon={<AiOutlineHome />}
+                  ml={4}
+                ></IconButton>
+              </Tooltip>
+            </Link>
+          ) : null}
           <Link to={"/explore"}>
             <Tooltip label="Explore">
               <IconButton
