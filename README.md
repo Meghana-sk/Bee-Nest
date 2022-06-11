@@ -84,5 +84,5 @@ BEE Nest is a platform to share your thoughts openly to the world.
 ## Desktop Version
 
 <p align="center">
-  <img width="100%" src="./src/assets/Bee-Nest-SocialMedia.gif" alt="NovSoc"/>
+  <img width="100%" src="./src/assets/Bee-Nest-SocialMedia.gif" alt="BeeNest"/>
 </p>

@@ -73,9 +73,9 @@ const Navbar = () => {
               onClick={onOpen}
             ></IconButton>
           </Tooltip>
-          <Link to={`/profile/${user.username}`}>
+          <Link to={`/profile/${user?.username}`}>
             <Tooltip label="Profile">
-              <Avatar size="sm" src={user.profilePic} ml={4}></Avatar>
+              <Avatar size="sm" src={user?.profilePic} ml={4}></Avatar>
             </Tooltip>
           </Link>
         </div>
