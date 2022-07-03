@@ -21,8 +21,8 @@ const Home = () => {
   /** The feed is filled with users the loggedin user is following */
   const feedPosts = posts?.filter(
     (post) =>
-      user.username === post.username ||
-      user.following.some((following) => following.username === post.username)
+      user?.username === post.username ||
+      user?.following.some((following) => following.username === post.username)
   );
 
   /** Filter trending posts on user feed */

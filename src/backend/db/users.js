@@ -35,14 +35,6 @@ export const users = [
         profilePic:
           "https://res.cloudinary.com/meghanaskcloud/image/upload/v1654444111/Social%20media/profile%20pics/elonmusk_Profile_lro5gn.jpg",
       },
-      {
-        _id: "1b288c33-ff6d-49c0-a8d3-58b297f1456",
-        firstName: "Akanksha",
-        lastName: "Choudhary",
-        username: "ch_akanksha",
-        profilePic:
-          "https://res.cloudinary.com/meghanaskcloud/image/upload/v1654447086/Social%20media/profile%20pics/akankshachoudhary_profile_pukemu.jpg",
-      },
     ],
     followers: [
       {

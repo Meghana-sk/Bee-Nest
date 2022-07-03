@@ -35,7 +35,10 @@ const FollowerSuggestions = () => {
       <Flex m={1} justifyContent="flex-start" flexDirection={"column"} gap={2}>
         {usersNotFollowedByLoggedInUser?.length
           ? usersNotFollowedByLoggedInUser.map((userSuggestion) => (
-              <FollowerSuggestionsProfile user={userSuggestion} />
+              <FollowerSuggestionsProfile
+                user={userSuggestion}
+                key={userSuggestion}
+              />
             ))
           : null}
       </Flex>

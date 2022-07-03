@@ -34,6 +34,7 @@ const PostCard = ({ post }) => {
   const { onOpen, isOpen, onClose } = useDisclosure();
   const { token, bookmarks, user } = useSelector((state) => state.auth);
   const navigate = useNavigate();
+  const { profilePic } = user;
 
   const alreadyBookmarked = bookmarks.some(
     (bookmarkedPost) => bookmarkedPost === post._id
@@ -96,15 +97,19 @@ const PostCard = ({ post }) => {
           <Box
             display="flex"
             gap={1.5}
+            alignItems="center"
             cursor="pointer"
             onClick={() => navigate(`/profile/${post.username}`)}
           >
-            <Avatar size="sm" src={post?.profilePic}></Avatar>
+            <Avatar
+              size="sm"
+              src={isCurrentLoggedInUsersPost ? profilePic : post?.profilePic}
+            ></Avatar>
             <Text fontWeight={"bold"}>
               {post?.firstName} {post?.lastName}
             </Text>
             <Text>@{post?.username}</Text>
-            <Text>{getDate(post?.createdAt)}</Text>
+            <Text fontSize={"xs"}>{getDate(post?.createdAt)}</Text>
           </Box>
           {isCurrentLoggedInUsersPost && (
             <Menu>
@@ -164,7 +169,11 @@ const PostCard = ({ post }) => {
         <CommentBox postId={post._id} />
         {latestCommentsOnTopArray.length
           ? latestCommentsOnTopArray.map((comment) => (
-              <CommentCard comment={comment} postId={post._id} />
+              <CommentCard
+                comment={comment}
+                postId={post._id}
+                key={comment._id}
+              />
             ))
           : null}
       </Flex>

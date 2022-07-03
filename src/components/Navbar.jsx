@@ -31,7 +31,7 @@ const Navbar = () => {
       top={0}
       zIndex={7}
     >
-      <HStack justifyContent={"space-between"}>
+      <HStack justifyContent={"space-between"} alignItems="center">
         <Link to="/home">
           <Heading>BEE Nest</Heading>
         </Link>
@@ -75,7 +75,13 @@ const Navbar = () => {
           </Tooltip>
           <Link to={`/profile/${user?.username}`}>
             <Tooltip label="Profile">
-              <Avatar size="sm" src={user?.profilePic} ml={4}></Avatar>
+              <Avatar
+                h="35px"
+                w="35px"
+                src={user?.profilePic}
+                ml={4}
+                borderRadius="full"
+              ></Avatar>
             </Tooltip>
           </Link>
         </div>
