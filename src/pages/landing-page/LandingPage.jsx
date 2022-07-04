@@ -1,4 +1,4 @@
-import { Flex, Image, Box, useMediaQuery } from "@chakra-ui/react";
+import { Flex, Image, Box, useMediaQuery, Heading } from "@chakra-ui/react";
 import { Login } from "../../pages";
 
 const LandingPage = () => {
@@ -17,7 +17,11 @@ const LandingPage = () => {
         display={"flex"}
         justifyContent={"center"}
         alignItems={"center"}
+        flexDirection="column"
       >
+        <Heading color={"purple.500"}>
+          Explore, connect and share your thoughts
+        </Heading>
         <Image src="https://res.cloudinary.com/meghanaskcloud/image/upload/v1654162356/Social%20media/heroImageSocialMedia_aqnuql.svg" />
       </Box>
       <Login heading="Come join Bee Nest" />

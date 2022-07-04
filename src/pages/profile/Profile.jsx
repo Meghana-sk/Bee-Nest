@@ -37,7 +37,7 @@ const Profile = () => {
         numberOfPosts={userPosts.length}
       />
       <Text fontWeight={800} fontSize={"20px"}>
-        Your posts
+        Posts
       </Text>
       {userPosts.length > 0 ? (
         [...userPosts]
